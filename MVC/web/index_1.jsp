@@ -28,6 +28,7 @@
 </style>
     
 <form action="VerDatosPelicula" method="POST">
+    
     <input type="text" name="nombrePelicula" value="NombreDeLaPeliculaQueQuieresBuscar"/>
     <input type="submit" class="button" val="text" >
 </form>
@@ -72,6 +73,7 @@
                             while (resultado.next()) {
                                 out.println("<div id=\"espacio1\">");
                                 out.println("<img  src="+resultado.getObject("rutaimagen")+"width=\"143px\" height=\"173px\" />");
+                                out.println("<a href='http://localhost:8080/MVC/PruebaSession?titulo="+resultado.getObject("titulo")+"'>Visit W3Schools</a>");
                                 out.println("</br>");
                                 out.println("</br>");
                                 out.println("<tr>"+"<td>"+resultado.getObject("titulo")+"</td>"+"</tr>");

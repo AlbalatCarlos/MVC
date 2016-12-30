@@ -62,7 +62,7 @@
             <div class="form-group">
                 <label required for="vueltas">Vueltas (Entre 40 y 80)</label>
                 <br/>
-                <input required type="number" min="40" max="80" title="Valor fuera del rango" class="form-control" id="vueltas" name="vueltas" placeholder="Vueltas">
+                <input required type="number" value="{}" min="40" max="80" title="Valor fuera del rango" class="form-control" id="vueltas" name="vueltas" placeholder="Vueltas">
             </div>
             <br/>
             <div class="form-group">
