@@ -10,7 +10,7 @@ import java.sql.*;
  *
  * @author CARLOS
  */
-public class AltaCoche extends HttpServlet {
+public class AltaUsuario extends HttpServlet {
 
     private ModeloDatos bd;
 
@@ -22,17 +22,19 @@ public class AltaCoche extends HttpServlet {
     public void service(HttpServletRequest req,
             HttpServletResponse res) throws ServletException, IOException {
         
-        String nombre = (String) req.getParameter("nombreCoche");
-        String gananciaKW = (String) req.getParameter("gananciaKW");
-        System.out.println(nombre+" - " + gananciaKW);
-
-        if (validarGanancia(gananciaKW) == true) {
-            if (bd.existeRegistroEnTabla("COCHE","nombre",nombre)) {
-                bd.actualizarCoche(nombre, gananciaKW);
+        String nombre = (String) req.getParameter("nombre");
+        String apellidos = (String) req.getParameter("apellidos");
+        String pass = (String) req.getParameter("pass");
+        String rol = (String) req.getParameter("rol");
+        
+        
+        //if (validarGanancia(gananciaKW) == true) {
+            if (bd.existeRegistroEnTabla("USUARIO","nombre",nombre)) {
+                bd.actualizarUsuario(nombre, apellidos, pass, rol);
             } else {
-                bd.insertarCoche(nombre, gananciaKW);
+                bd.insertarUsuario(nombre, apellidos, pass, rol);
             }
-        }
+        //}
 
         res.sendRedirect(res.encodeRedirectURL("/Practica6MVC/index.jsp"));
 

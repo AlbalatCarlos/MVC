@@ -12,8 +12,17 @@ import java.sql.*;
  *
  * @author CARLOS
  */
+
+
 public class ModeloDatos {
 
+    public class Registro {
+        public ArrayList<Campo> campos;
+    }
+    public class Campo{
+        public String nombre;
+        public String valor;
+    }
     private Connection con;
     private Statement set;
     private ResultSet rs;
@@ -56,12 +65,27 @@ public class ModeloDatos {
         }
         return (existe);
     }
+    
+    public boolean IsNullOrWhiteSpace(String value) {
+        if (value == null) {
+            return true;
+        }
+        for (int index = 0; index < value.length(); ++index) {
+            if (value.charAt(index) != ' ') 
+            {
+                return false;
+            }
+        }
+        return true;
+    }
 
-    public void actualizarCoche(String nombre, String ganaciaKW) {
+    public void actualizarUsuario(String nombre, String apellidos, String pass, String rol) {
         try {
+            String strSQl = "apellidos='" + apellidos + "',pass='" + pass 
+                    + "',rol='" + rol + "'";
             set = con.createStatement();
             set.executeUpdate(
-                    "UPDATE COCHE SET ganaciaKW=" + ganaciaKW + " WHERE nombre "
+                    "UPDATE USUARIO SET " + strSQl + "' WHERE nombre "
                     + " LIKE '%" + nombre + "%'");
             rs.close();
             set.close();
@@ -69,54 +93,66 @@ public class ModeloDatos {
             System.out.println("No modifica la tabla");
         }
     }
-
-    public void insertarCoche(String nombre, String gananciaKW) {
+    
+    public void insertarUsuario(String nombre, String apellidos, String pass, String rol) {
         try {
             set = con.createStatement();
-            set.executeUpdate("INSERT INTO COCHE "
-                    + " (nombre,ganaciaKW) VALUES ('" + nombre + "'," + gananciaKW + ")");
+            set.executeUpdate("INSERT INTO USUARIO "
+                    + " (nombre,apellidos,pass,rol) VALUES ('" + nombre + "','" + apellidos
+                    + "','"+ pass+"','"+rol+"')");
             rs.close();
             set.close();
         } catch (Exception e) {
-            System.out.println("No inserta en la tabla");
+            System.out.println("Ya existía el usuario");
         }
     }
-
-    public void actualizarCircuito(String nombre, String ciudad, String pais,
-            String vueltas, String longitud, String curvasPorVuelta) {
+    
+    public ArrayList<Registro> dameListaEntradas() {
         try {
-            String strSQl = "ciudad='" + ciudad + "',pais='" + pais 
-                    + "',vueltas=" + vueltas + ",longitud=" + longitud 
-                    + ",curvasPorVuelta=" + curvasPorVuelta ;
+            set = con.createStatement();
+            rs = set.executeQuery("SELECT * FROM ENTRADA");
+
+            ArrayList<Registro> registros = new ArrayList<Registro>();
             
-            set = con.createStatement();
-            set.executeUpdate(
-                    "UPDATE CIRCUITO SET " + strSQl + " WHERE nombre "
-                    + " LIKE '%" + nombre + "%'");
-            rs.close();
-            set.close();
-        } catch (Exception e) {
-            System.out.println("No modifica la tabla");
-        }
-    }
+            Campo campo = new Campo();
 
-    public void insertarCircuito(String nombre, String ciudad, String pais,
-            String vueltas, String longitud, String curvasPorVuelta) {
-        try {
-            String strCampos = "nombre,ciudad,pais,vueltas,longitud,curvasPorVuelta";
-            String strValues = "'" + nombre + "','" + ciudad + "','" + pais 
-                    + "'," + vueltas + "," + longitud 
-                    + "," + curvasPorVuelta;
-            
-            set = con.createStatement();
-            set.executeUpdate("INSERT INTO CIRCUITO "
-                    + " ("+strCampos+") VALUES (" + strValues + ")");
+            //Guardo las entradas en un ArrayList
+            while (rs.next()) {
+                Registro registro = new Registro();
+                campo.nombre = "idReproduccion";
+                campo.valor = rs.getString("idReproduccion");
+                registro.campos.add(campo);
+                
+                campo.nombre = "nombreUsuario";
+                campo.valor = rs.getString("nombreUsuario");
+                registro.campos.add(campo);
+                
+                campo.nombre = "fila";
+                campo.valor = rs.getString("fila");
+                registro.campos.add(campo);
+                
+                campo.nombre = "columna";
+                campo.valor = rs.getString("columna");
+                registro.campos.add(campo);
+                
+                campo.nombre = "referencia";
+                campo.valor = rs.getString("referencia");
+                registro.campos.add(campo);
+                
+                registros.add(registro);
+            }
             rs.close();
             set.close();
+            
+            return registros;
         } catch (Exception e) {
-            System.out.println("No inserta en la tabla");
+            System.out.println("Fallo al listar entradas");
+            return null;
         }
     }
+    
+    
+    
 
     public void cerrarConexion() {
         try {
