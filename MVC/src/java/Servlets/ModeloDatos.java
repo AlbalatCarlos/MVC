@@ -176,6 +176,25 @@ public class ModeloDatos {
         return exito;
     }
     
+    public String dameRolUsuario( String nombreUsuario ){
+        String rol = "";
+        try {
+            set = con.createStatement();
+            rs = set.executeQuery("SELECT rol FROM USUARIO WHERE nombre='"+nombreUsuario+"'");
+            while (rs.next()) {
+                rol = rs.getString("rol");
+                rol = rol.trim();
+            }
+            
+            rs.close();
+            set.close();
+        } catch (Exception e) {
+            System.out.println("No lee el rol de la tabla USUARIO \nException: "+e);
+            return null;
+        }
+        return rol;
+    }
+    
     public ArrayList<ENTRADA> dameListaEntradas() {
         try {
             set = con.createStatement();

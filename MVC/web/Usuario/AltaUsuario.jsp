@@ -30,10 +30,10 @@
                 <br/> 
                 <input type="text" name="pass" value=""/>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="display:none">
                 <label for="rol">Rol</label>
                 <br/> 
-                <input type="text" name="rol" value=""/>
+                <input type="text" name="rol" value="user"/>
             </div>
              <input class="button" type="submit" value="Alta Usuario"/>
          </form>
