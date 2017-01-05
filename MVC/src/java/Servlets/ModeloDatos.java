@@ -7,6 +7,7 @@ package Servlets;
 
 import java.util.*;
 import java.sql.*;
+import java.util.Date;
 
 /**
  *
@@ -16,13 +17,61 @@ import java.sql.*;
 
 public class ModeloDatos {
 
-    public class Registro {
-        public ArrayList<Campo> campos;
+    public class COMENTARIO {
+        public String nombrePelicula; //PK
+        public String nombreUsuario; //PK
+        public String comentario;
     }
-    public class Campo{
-        public String nombre;
-        public String valor;
+    
+    public class ENTRADA {
+        public int idReproduccion; //FK REPRODUCCION
+        public String nombreUsuario; //FK USUARIO
+        public int fila;
+        public int columna;
+        public int referencia; //PK
     }
+    
+    public class PELICULA {
+        public String nombre; //PK
+        public String sipnosis;
+        public String paginaOficial;
+        public String tituloOriginal;
+        public String genero;
+        public String nacionalidad;
+        public double duracion;
+        public int anyo;
+        public String distribuidora;
+        public String director;
+        public String otrosDatos;
+    }
+    
+    public class PELICULA_AUTORES {
+        public String nombrePelicula; //PK 
+        public String nombreAutor; //PK
+    }
+    
+    public class REPRODUCCION {
+        public String nombrePelicula; //FK PELICULA
+        public String nombreSala; //FK SALA
+        public Date fecha;
+        public int hora;
+        public int idReproduccion; //PK
+    }
+    
+    public class SALA {
+        public String nombre; //PK
+        public int filas;
+        public int columnas;
+    }
+    
+    public class USUARIO {
+        public String nombre; //PK
+        public String apellidos;
+        public String pass;
+        public String rol;
+    }
+    
+    
     private Connection con;
     private Statement set;
     private ResultSet rs;
@@ -36,7 +85,7 @@ public class ModeloDatos {
             //Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
             Class.forName("org.apache.derby.jdbc.ClientDriver");
             //    con = DriverManager.getConnection(sURL,"","");
-            con = DriverManager.getConnection("jdbc:derby://localhost:1527/sample", "app", "app");
+            con = DriverManager.getConnection("jdbc:derby://localhost:1527/MVC_CINE", "sa", "sa");
             System.out.println("Se ha conectado");
         } catch (Exception e) {
             System.out.println("No se ha conectado");
@@ -61,7 +110,7 @@ public class ModeloDatos {
             rs.close();
             set.close();
         } catch (Exception e) {
-            System.out.println("No lee de la tabla");
+            System.out.println("No lee de la tabla Nombre: "+ valorClave+" \nException: "+e);
         }
         return (existe);
     }
@@ -85,12 +134,12 @@ public class ModeloDatos {
                     + "',rol='" + rol + "'";
             set = con.createStatement();
             set.executeUpdate(
-                    "UPDATE USUARIO SET " + strSQl + "' WHERE nombre "
+                    "UPDATE USUARIO SET " + strSQl + " WHERE nombre "
                     + " LIKE '%" + nombre + "%'");
             rs.close();
             set.close();
         } catch (Exception e) {
-            System.out.println("No modifica la tabla");
+            System.out.println("No modifica la tabla. Nombre: "+ nombre+" \nException: "+ e);
         }
     }
     
@@ -103,51 +152,66 @@ public class ModeloDatos {
             rs.close();
             set.close();
         } catch (Exception e) {
-            System.out.println("Ya existía el usuario");
+            System.out.println("Ya existía el usuario"+ e);
         }
     }
     
-    public ArrayList<Registro> dameListaEntradas() {
+    public boolean Logearse(String nombre, String pass){
+        boolean exito = false;
+        try {
+            set = con.createStatement();
+            rs = set.executeQuery("SELECT * FROM USUARIO WHERE nombre='"+nombre
+                    +"' and pass='" + pass+"'");
+            while (rs.next()) {
+                exito = true;
+            }
+            
+            rs.close();
+            set.close();
+            
+        } catch (Exception e) {
+            System.out.println("No lee de la tabla USUARIO \nException: "+e);
+            return false;
+        }
+        return exito;
+    }
+    
+    public ArrayList<ENTRADA> dameListaEntradas() {
         try {
             set = con.createStatement();
             rs = set.executeQuery("SELECT * FROM ENTRADA");
 
-            ArrayList<Registro> registros = new ArrayList<Registro>();
+            ArrayList<ENTRADA> entradas = new ArrayList<ENTRADA>();
             
-            Campo campo = new Campo();
 
             //Guardo las entradas en un ArrayList
             while (rs.next()) {
-                Registro registro = new Registro();
-                campo.nombre = "idReproduccion";
-                campo.valor = rs.getString("idReproduccion");
-                registro.campos.add(campo);
-                
-                campo.nombre = "nombreUsuario";
-                campo.valor = rs.getString("nombreUsuario");
-                registro.campos.add(campo);
-                
-                campo.nombre = "fila";
-                campo.valor = rs.getString("fila");
-                registro.campos.add(campo);
-                
-                campo.nombre = "columna";
-                campo.valor = rs.getString("columna");
-                registro.campos.add(campo);
-                
-                campo.nombre = "referencia";
-                campo.valor = rs.getString("referencia");
-                registro.campos.add(campo);
-                
-                registros.add(registro);
+                try{
+                    ENTRADA entrada = new ENTRADA();
+                    entrada.idReproduccion =  rs.getInt("idReproduccion");
+
+                    entrada.nombreUsuario = rs.getString("nombreUsuario");
+
+                    entrada.fila = rs.getInt("fila");
+
+                    entrada.columna = rs.getInt("columna");
+
+                    entrada.referencia = rs.getInt("referencia");
+
+                    entradas.add(entrada);
+                }
+                catch(Exception e){
+                    System.out.println("Alguna de las entradas tiene datos no validos: "+e);
+                    return new ArrayList<ENTRADA>();
+                }
             }
             rs.close();
             set.close();
             
-            return registros;
+            return entradas;
         } catch (Exception e) {
-            System.out.println("Fallo al listar entradas");
-            return null;
+            System.out.println("Fallo al listar entradas "+ e);
+            return new ArrayList<ENTRADA>();
         }
     }
     
