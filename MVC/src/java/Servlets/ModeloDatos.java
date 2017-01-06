@@ -43,6 +43,8 @@ public class ModeloDatos {
         public String distribuidora;
         public String director;
         public String otrosDatos;
+        public String actores;
+        public String edad;
     }
     
     public class PELICULA_AUTORES {
@@ -54,7 +56,7 @@ public class ModeloDatos {
         public String nombrePelicula; //FK PELICULA
         public String nombreSala; //FK SALA
         public Date fecha;
-        public int hora;
+        public double hora;
         public int idReproduccion; //PK
     }
     
@@ -77,7 +79,7 @@ public class ModeloDatos {
     private ResultSet rs;
 
     public void abrirConexion() {
-        String sURL = "jdbc:odbc:mvc";
+        String sURL = "jdbc:odbc:mvc";  
         if (con != null) {
             return;
         }
@@ -85,7 +87,7 @@ public class ModeloDatos {
             //Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
             Class.forName("org.apache.derby.jdbc.ClientDriver");
             //    con = DriverManager.getConnection(sURL,"","");
-            con = DriverManager.getConnection("jdbc:derby://localhost:1527/MVC_CINE", "sa", "sa");
+            con = DriverManager.getConnection("jdbc:derby://localhost:1527/MVCAUX", "app", "app");
             System.out.println("Se ha conectado");
         } catch (Exception e) {
             System.out.println("No se ha conectado");
@@ -234,7 +236,37 @@ public class ModeloDatos {
         }
     }
     
-    
+    public PELICULA damePelicula(String nombrePelicula)
+    {
+        PELICULA pelicula = new PELICULA();
+        try {
+            set = con.createStatement();
+            rs = set.executeQuery("SELECT * FROM PELICULA WHERE nombre='"+nombrePelicula+"'");
+            while (rs.next()) {
+                pelicula.nombre = rs.getString("nombre");
+                pelicula.anyo = rs.getInt("anyo");
+                pelicula.director = rs.getString("director");
+                pelicula.distribuidora = rs.getString("distribuidora");
+                pelicula.duracion = rs.getInt("duracion");
+                pelicula.genero = rs.getString("genero");
+                pelicula.nacionalidad = rs.getString("nacionalidad");
+                pelicula.otrosDatos = rs.getString("otrosDatos");
+                pelicula.paginaOficial = rs.getString("paginaOficial");
+                pelicula.sipnosis = rs.getString("sinopsis");
+                pelicula.tituloOriginal = rs.getString("tituloOriginal");
+                pelicula.actores = rs.getString("actores");
+                pelicula.edad = rs.getString("edad");
+                
+            }
+            
+            rs.close();
+            set.close();
+        } catch (Exception e) {
+            System.out.println("No lee el rol de la tabla USUARIO \nException: "+e);
+            return null;
+        }
+        return pelicula;
+    }
     
 
     public void cerrarConexion() {
@@ -272,5 +304,95 @@ public class ModeloDatos {
             return 0.0;
         }
     }
+    
+    
+    
+    
+    
+    
+    // ----------------------------------------------- GESTION DE PELICULAS ---------------------------------------- Jayro
+    
+     public void insertarPelicula(String nombre, String sinopsis, String paginaOficial, String tituloOriginal,
+            String genero, String nacionalidad, double duracion, int ano, String distribuidora, String director, String actores,
+            String datos, String edad) {
+        try {
+            System.out.println("AQUIII LA PELICULA 2  " + nombre + sinopsis);
+            set = con.createStatement();
+            set.executeUpdate("INSERT INTO PELICULA "
+                    + " (NOMBRE , SINOPSIS, PAGINAOFICIAL, TITULOORIGINAL, GENERO, NACIONALIDAD, DURACION,"
+                    + "ANYO, DISTRIBUIDORA, DIRECTOR, ACTORES, OTROSDATOS, EDAD) VALUES"
+                    + " ('" + nombre + "' , '" + sinopsis + "' , '" + paginaOficial + "', '" + tituloOriginal + "','" + genero + "'"
+                    + ",'" + nacionalidad + "' , " + duracion + " , " + ano + " , '" + distribuidora + "' , '" + director + "' , '" + actores + "'"
+                    + ", '" + datos + "' , '" + edad + "')");
+            rs.close();
+            set.close();
+        } catch (Exception e) {
+            System.out.println("No inserta en la tabla " + e);
+        }
+    }
+     
+     public void modificarPelicula(String nombre, String sinopsis, String paginaOficial, String tituloOriginal,
+            String genero, String nacionalidad, double duracion, int ano, String distribuidora, String director, String actores,
+            String datos, String edad) {
+        try {
+            System.out.println("AQUIII LA PELICULA 2  " + nombre + sinopsis);
+            set = con.createStatement();
+            set.executeUpdate(
+                    "UPDATE PELICULA SET "
+                    + " NOMBRE='"+nombre+"' , SINOPSIS='"+sinopsis
+                    +"', PAGINAOFICIAL='"+ paginaOficial +"', TITULOORIGINAL='"+
+                    tituloOriginal+"', GENERO='"+genero+"', NACIONALIDAD='"+nacionalidad
+                    +"', DURACION="+duracion+","
+                    + " ANYO="+ano+", DISTRIBUIDORA='"+distribuidora+"', DIRECTOR='"+
+                    director+"', ACTORES='"+actores+"', OTROSDATOS='"+datos+"', EDAD='"+edad+"'"+
+                    "WHERE nombre = '"+nombre+"'"
+            );
+            rs.close();
+            set.close();
+        } catch (Exception e) {
+            System.out.println("No inserta en la tabla " + e);
+        }
+    }
+     
+     
+     
+    public void borrarPelicula(String nombre) throws SQLException {
+
+        try {
+
+            set = con.createStatement();
+            set.executeUpdate("DELETE FROM PELICULA WHERE NOMBRE=" + "'" + nombre + "'");
+            rs.close();
+            set.close();
+        } catch (Exception e) {
+            System.out.println("No borra en la tabla " + e);
+        }
+
+        set = con.createStatement();
+
+    }
+    
+    
+    
+    // ----------------------------------------------- GESTION DE REPRODUCCIONES ---------------------------------------- Jayro
+    
+    
+    
+    public void insertarReproduccion(String nombrePelicula, String nombreSala, String fecha, double hora, int idReproduccion ) {
+        try {
+            System.out.println("AQUIII LA REPRODUCCION 2  " + nombrePelicula + idReproduccion);
+            set = con.createStatement();
+            set.executeUpdate("INSERT INTO REPRODUCCION "
+                    + " (NOMBREPELICULA , NOMBRESALA, FECHA, HORA, IDREPRODUCCION) VALUES"
+                    + " ('" + nombrePelicula + "' , '" + nombreSala + "' , '" + fecha + "', " + hora + "," + idReproduccion + ")");
+            rs.close();
+            set.close();
+        } catch (Exception e) {
+            System.out.println("No inserta en la tabla " + e);
+        }
+    }
 
 }
+    
+
+

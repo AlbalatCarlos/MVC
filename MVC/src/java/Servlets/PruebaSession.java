@@ -33,7 +33,7 @@ public class PruebaSession extends HttpServlet {
         
         PrintWriter out = res.getWriter();
         out.println("<h1 style='text-align:center'>"+session.getAttribute("nombre")+"</h1>");
-        session.setAttribute("nombre", "Carlos");
+        session.setAttribute("nombre", "Paco");
         out.println("<h1 style='text-align:center'>"+session.getAttribute("nombre")+"</h1>");
         out.println("<h1 style='text-align:center'>"+nombreUsuario+"</h1>");
 

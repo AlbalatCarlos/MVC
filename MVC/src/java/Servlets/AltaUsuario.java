@@ -42,7 +42,12 @@ public class AltaUsuario extends HttpServlet {
             pagina = "/MVC/Usuario/ModificarUsuario.jsp";
         } else {
             if(bd.dameRolUsuario(nombreSession).equals("admin"))
-            session.setAttribute("error", "No puede dar de alta un usuario si está logado");
+            {
+                bd.insertarUsuario(nombre, apellidos, pass, rol);
+                pagina = "/MVC/Usuario/ModificarUsuario.jsp";
+            }
+            else
+                session.setAttribute("error", "No puede dar de alta un usuario si está logado");
         }
         res.sendRedirect(res.encodeRedirectURL(pagina));
     }

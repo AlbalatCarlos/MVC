@@ -12,6 +12,30 @@
         <servlet-name>Login</servlet-name>
         <servlet-class>Servlets.Login</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ModificarPelicula</servlet-name>
+        <servlet-class>Servlets.ModificarPelicula</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PruebaBorrar</servlet-name>
+        <servlet-class>Servlets.PruebaBorrar</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BorrarPelicula</servlet-name>
+        <servlet-class>Servlets.BorrarPelicula</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>altaReproduccion</servlet-name>
+        <servlet-class>Servlets.AltaReproduccion</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AltaReproduccion</servlet-name>
+        <servlet-class>Servlets.AltaReproduccion</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MenuGestionPeliculas</servlet-name>
+        <servlet-class>Servlets.MenuGestionPeliculas</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PruebaSession</servlet-name>
         <url-pattern>/PruebaSession</url-pattern>
@@ -23,6 +47,30 @@
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ModificarPelicula</servlet-name>
+        <url-pattern>/ModificarPelicula</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PruebaBorrar</servlet-name>
+        <url-pattern>/PruebaBorrar</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BorrarPelicula</servlet-name>
+        <url-pattern>/BorrarPelicula</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>altaReproduccion</servlet-name>
+        <url-pattern>/altaReproduccion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AltaReproduccion</servlet-name>
+        <url-pattern>/AltaReproduccion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MenuGestionPeliculas</servlet-name>
+        <url-pattern>/MenuGestionPeliculas</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
