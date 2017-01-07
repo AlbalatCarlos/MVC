@@ -417,7 +417,6 @@ public class ModeloDatos {
             String genero, String nacionalidad, double duracion, int ano, String distribuidora, String director, String actores,
             String datos, String edad) {
         try {
-            System.out.println("AQUIII LA PELICULA 2  " + nombre + sinopsis);
             set = con.createStatement();
             set.executeUpdate("INSERT INTO PELICULA "
                     + " (NOMBRE , SINOPSIS, PAGINAOFICIAL, TITULOORIGINAL, GENERO, NACIONALIDAD, DURACION,"
@@ -436,7 +435,6 @@ public class ModeloDatos {
             String genero, String nacionalidad, double duracion, int ano, String distribuidora, String director, String actores,
             String datos, String edad) {
         try {
-            System.out.println("AQUIII LA PELICULA 2  " + nombre + sinopsis);
             set = con.createStatement();
             set.executeUpdate(
                     "UPDATE PELICULA SET "
@@ -485,6 +483,20 @@ public class ModeloDatos {
             set.close();
         } catch (Exception e) {
             System.out.println("No inserta en la tabla " + e);
+        }
+    }
+    
+    public void actualizarReproduccion(String nombrePelicula, String nombreSala,String fecha, double horas, int idReproduccion) {
+        try {
+            String strSQl = "fecha='" + fecha + "',horas=" + horas+",idReproduccion="+idReproduccion+",nombrePelicula='" + nombrePelicula + "',nombreSala='" + nombreSala + "'";
+            set = con.createStatement();
+            set.executeUpdate(
+                    "UPDATE SALA SET " + strSQl + " WHERE idReproduccion "
+                    + " = "+ idReproduccion);
+            rs.close();
+            set.close();
+        } catch (Exception e) {
+            System.out.println("No modifica la tabla Sala. \nException: "+ e);
         }
     }
     
