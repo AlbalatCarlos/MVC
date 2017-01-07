@@ -117,6 +117,7 @@ public class ModeloDatos {
         return (existe);
     }
     
+    
     public boolean IsNullOrWhiteSpace(String value) {
         if (value == null) {
             return true;
@@ -487,6 +488,29 @@ public class ModeloDatos {
         }
     }
     
+    public REPRODUCCION dameReproduccion(String nombreReproduccion)
+    {
+        REPRODUCCION reproduccion = new REPRODUCCION();
+        try {
+            set = con.createStatement();
+            rs = set.executeQuery("SELECT * FROM REPRODUCCION WHERE nombre='"+nombreReproduccion+"'");
+            while (rs.next()) {
+                reproduccion.fecha =  rs.getDate("fecha");
+                reproduccion.hora = rs.getDouble("hora");
+                reproduccion.idReproduccion = rs.getInt("idReproduccion");
+                reproduccion.nombrePelicula = rs.getString("nombrePelicula");
+                reproduccion.nombreSala = rs.getString("nombreSala");
+            }
+            
+            rs.close();
+            set.close();
+        } catch (Exception e) {
+            System.out.println("No lee el rol de la tabla REPRODUCCION \nException: "+e);
+            return new REPRODUCCION();
+        }
+        return reproduccion;
+    }
+    
     public ArrayList<REPRODUCCION> dameListaReproducciones() {
         try {
             set = con.createStatement();
@@ -520,6 +544,27 @@ public class ModeloDatos {
             System.out.println("Fallo al listar reproducciones "+ e);
             return new ArrayList<REPRODUCCION>();
         }
+    }
+    
+    public boolean existeReproduccion(int idReproduccion) {
+
+        boolean existe = false;
+        int num;
+        try {
+            set = con.createStatement();
+            rs = set.executeQuery("SELECT * FROM REPRODUCCION");
+            while (rs.next()) {
+                num = rs.getInt("idReproduccion");
+                if (num == idReproduccion) {
+                    existe = true;
+                }
+            }
+            rs.close();
+            set.close();
+        } catch (Exception e) {
+            System.out.println("No lee de la tabla REPRODUCCION \nException: "+e);
+        }
+        return (existe);
     }
     
 

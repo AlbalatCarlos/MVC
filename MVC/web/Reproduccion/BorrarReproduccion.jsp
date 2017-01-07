@@ -72,7 +72,7 @@
                     </select>
                     <br>
                     <br>
-                    <input class="button btn btn-danger btn-block" onclick="pulsar()"  type="submit" value="Borrar Sala"/>
+                    <input class="button btn btn-danger btn-block" onclick="pulsar()"  type="submit" value="Borrar Reproducción"/>
                     
                     <br>
                     <br>

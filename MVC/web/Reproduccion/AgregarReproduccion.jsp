@@ -4,6 +4,7 @@
     Author     : Jayro
 --%>
 
+<%@page import="Servlets.ModeloDatos.SALA"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Servlets.ModeloDatos"%>
 <%@page import="Servlets.ModeloDatos.PELICULA"%>
@@ -55,7 +56,6 @@
                                 out.println("<option class=\"form-control\" value='' > No hay Películas</option>");
                             }
 
-                            bd.cerrarConexion();
                         %>
                     </select>
             </div>
@@ -64,7 +64,27 @@
 
             <label class="control-label col-xs-3">Nombre Sala:</label>
             <div class="col-xs-9">
-                <input textarea rows="3" class="form-control" placeholder="nombreSala" name="sinopsis">
+                <select  style="text-align: center" class="form-control "    name="nombreSala">
+                        <%
+                            
+                            /* Leemos de la base de datos */
+                            try {
+                                ArrayList<SALA> salas = bd.dameListaSalas();
+                                String resp = "";
+
+                                for(SALA sala : salas)
+                                {
+                                    resp = sala.nombre;
+                                    out.println("<option class=\"form-control\" value='" + resp + "' > " + resp + "</option>");
+                                }
+
+                            } catch (Exception e) {
+                                out.println("<option class=\"form-control\" value='' > No hay Salas</option>");
+                            }
+
+                            bd.cerrarConexion();
+                        %>
+                    </select>
             </div>
             <br>
             <br>

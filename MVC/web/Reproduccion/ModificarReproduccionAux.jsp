@@ -4,6 +4,7 @@
     Author     : Jayro
 --%>
 
+<%@page import="java.util.ArrayList"%>
 <%@page import="Servlets.ModeloDatos"%>
 <%@page import="Servlets.ModeloDatos.*"%>
 <html>
@@ -19,13 +20,13 @@
     <body>
         <%
             
-            String nombreSala = (String) session.getAttribute("nombreSala");
+            String nombreReproduccion = (String) session.getAttribute("nombreReproduccion");
             
             ModeloDatos bd = new ModeloDatos();
             bd.abrirConexion();
-            SALA sala =  bd.dameSala(nombreSala);
+            REPRODUCCION reproduccion =  bd.dameReproduccion(nombreReproduccion);
             String nombre= (String) session.getAttribute("nombre");
-            bd.cerrarConexion();
+            
             
         %>
         <header>
@@ -39,24 +40,85 @@
 
         <form class="form-group col-xs-6 col-xs-offset-3" action="/MVC/AltaSala" method="POST">
 
-            <label for="nombre" class="control-label col-xs-3">Nombre Sala:</label>
+            
+            <label class="control-label col-xs-3">Nombre Película:</label>
             <div class="col-xs-9">
-                <input required value="<%out.print(sala.nombre);%>" type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre Sala">
+                <select required  style="text-align: center" class="form-control "    name="nombrePelicula">
+                        <%
+                            
+                            
+                            /* Leemos de la base de datos */
+                            try {
+                                ArrayList<PELICULA> peliculas = bd.dameListaPeliculas();
+                                String resp = "", selected;
+
+                                for(PELICULA pelicula : peliculas)
+                                {
+                                    selected = "";
+                                    resp = pelicula.nombre;
+                                    if(resp.equals(reproduccion.nombrePelicula)){selected="selected";}
+                                    out.println("<option class=\"form-control\" "+selected+" value='" + resp + "' > " + resp + "</option>");
+                                }
+
+                            } catch (Exception e) {
+                                out.println("<option class=\"form-control\" value='' > No hay Películas</option>");
+                            }
+
+                        %>
+                    </select>
             </div>
             <br>
             <br>
 
-            <label class="control-label col-xs-3">Filas:</label>
+            
+            <label for="nombreSala" class="control-label col-xs-3">Nombre Sala:</label>
             <div class="col-xs-9">
-                <input type="number" value="<%out.print(sala.filas);%>" class="form-control" id="filas" name="filas" placeholder="Filas">
+                <select required  style="text-align: center" class="form-control" id="nombreSala"   name="nombreSala">
+                    <%
+
+                        /* Leemos de la base de datos */
+                        try {
+                            ArrayList<SALA> salas = bd.dameListaSalas();
+                            String resp = "",selected;
+                            
+                            for(SALA sala : salas)
+                            {
+                                selected = "";
+                                resp = sala.nombre;
+                                if(resp.equals(reproduccion.nombrePelicula)){selected="selected";}
+                                out.println("<option class=\"form-control\" value='" + resp + "' > " + resp + "</option>");
+                            }
+
+                        } catch (Exception e) {
+                            out.println("<option class=\"form-control\" value='' > No hay Salas</option>");
+                        }
+
+                        bd.cerrarConexion();
+                    %>
+                </select>
+            </div>
+            <br>
+            <br>
+
+            <label class="control-label col-xs-3">Fecha:</label>
+            <div class="col-xs-9">
+                <input required type="date" value="<%out.print(reproduccion.fecha);%>" class="form-control" id="fecha" name="fecha" placeholder="Fecha">
             </div>
             <br>
             <br>
 
 
+            <label class="control-label col-xs-3">Hora:</label>
+            <div class="col-xs-9">
+                <input required type="number" value="<%out.print(reproduccion.hora);%>" class="form-control" name="hora" placeholder="hora">
+            </div>
+            <br>
+            <br>
+            
+            
             <label class="control-label col-xs-3">Columnas:</label>
             <div class="col-xs-9">
-                <input type="number" value="<%out.print(sala.columnas);%>" class="form-control" name="columnas" placeholder="Columnas">
+                <input required type="number" value="<%out.print(sala.columnas);%>" class="form-control" name="columnas" placeholder="Columnas">
             </div>
             <br>
             <br>

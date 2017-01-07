@@ -18,6 +18,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -47,13 +48,49 @@ public class AltaReproduccion extends HttpServlet {
         hora= Double.parseDouble(req.getParameter("hora"));
         }
         
-         int idReproduccion=0;
+         int idReproduccion = -1;
         
         if(((String)req.getParameter("idReproduccion")).length()>0){
         idReproduccion= Integer.parseInt(req.getParameter("idReproduccion"));
         }
         
 
+        HttpSession session = req.getSession();
+        session.removeAttribute("error");
+        String pagina = "/MVC/Sala/ModificarReproduccionAux.jsp";
+        String nombreSession = (String)session.getAttribute("nombre");
+        
+        String rol = bd.dameRolUsuario(nombreSession);
+        
+        if(bd.IsNullOrWhiteSpace(nombreSession))
+        {
+            session.setAttribute("error", "No puede dar de alta una reproduccion si no está logado");
+            pagina = "/MVC/Usuario/Login.jsp";
+        } 
+        else if (bd.existeReproduccion(idReproduccion)) 
+        {
+            if(rol.equals("admin"))
+            {
+                bd.actualizarReproduccion(nombrePelicula, nombreSala, fecha, hora, idReproduccion);
+                session.setAttribute("idReproduccion", idReproduccion);
+            }
+            else
+            {
+                session.setAttribute("error", "No puede modificar una sala si no es administrador");
+                pagina = "/MVC/Usuario/Login.jsp";
+            }
+        } else {
+            if(rol.equals("admin"))
+            {
+                bd.insertarReproduccion(nombrePelicula, nombreSala, fecha, hora, idReproduccion);
+                session.setAttribute("idReproduccion", idReproduccion);
+            }
+            else
+            {
+                session.setAttribute("error", "No puede dar de alta una sala si no es administrador");
+                pagina = "/MVC/Usuario/Login.jsp";
+            }
+        }
         
         
         bd.insertarReproduccion(nombrePelicula, nombreSala, fecha, hora, idReproduccion);
