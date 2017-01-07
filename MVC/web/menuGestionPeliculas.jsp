@@ -28,9 +28,11 @@
         <div class="row">
             <div class="col-sm-3"></div>
             <div class="col-sm-6"> <div class="dropdown">
-                    <button class="btn btn-primary  btn-block dropdown-toggle" type="button" data-toggle="dropdown">Gestion Peliculas
-                        <span class="caret"></span></button>
-                    <ul class="dropdown-menu btn btn-block"  >
+                    <button class="btn btn-primary  btn-block dropdown-toggle" type="button" data-toggle="dropdown">
+                        Gestion Peliculas
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu btn btn-block">
                         <li><a style="color:#337ab7;" class="btn btn-block btn-default" href="./MenuGestionPeliculas?dir=alta&obj=Pelicula">Alta Película</a></li>
                         <li><a style="color:#337ab7;" class="btn  btn-block btn-default" href="./MenuGestionPeliculas?dir=mod&obj=Pelicula">Modificar Película</a></li>
                         <li><a style="color:#337ab7;" class="btn  btn-block btn-default" href="./MenuGestionPeliculas?dir=bor&obj=Pelicula">Borrar Película</a></li>
@@ -60,20 +62,20 @@
             <div class="col-sm-3"></div>
         </div>
 
-
         <br/>
         <br/>
-
 
         <div class="row">
             <div class="col-sm-3"></div>
             <div class="col-sm-6"> <div class="dropdown">
-                    <button class="btn btn-primary  btn-block dropdown-toggle" type="button" data-toggle="dropdown">Gestion Entradas
-                        <span class="caret"></span></button>
+                    <button class="btn btn-primary  btn-block dropdown-toggle" type="button" data-toggle="dropdown">
+                        Gestión Reproducciones
+                        <span class="caret"></span>
+                    </button>
                     <ul class="dropdown-menu btn btn-block"  >
-                        <li><div  class="btn  btn-block btn-default" ><a href="/MVC/altaReproduccion.jsp">Alta Entrada</a></div></li>
-                        <li><div  class="btn  btn-block btn-default" ><a href="/MVC/modificarReproduccion.jsp">Modificar Entrada</a></div></li>
-                        <li><div  class="btn  btn-block btn-default" ><a href="/MVC/borrarReproduccion.jsp">Borrar Entrada</a></div></li>
+                        <li><a style="color:#337ab7;" class="btn btn-block btn-default" href="./MenuGestionPeliculas?dir=alta&obj=Reproduccion">Alta Reproducción</a></li>
+                        <li><a style="color:#337ab7;" class="btn  btn-block btn-default" href="./MenuGestionPeliculas?dir=mod&obj=Reproduccion">Modificar Reproducción</a></li>
+                        <li><a style="color:#337ab7;" class="btn  btn-block btn-default" href="./MenuGestionPeliculas?dir=bor&obj=Reproduccion">Borrar Reproducción</a></li>
                     </ul>
                 </div> </div>
 
