@@ -62,8 +62,5 @@ public class AltaReproduccion extends HttpServlet {
 
     }
 
-   public void destroy() {
-        bd.cerrarConexion();
-        super.destroy();
-    }
+   
 }

@@ -30,12 +30,7 @@ public class Login extends HttpServlet {
         String pagina="";
         if (bd.Logearse(nombre, pass)) {
             session.setAttribute("nombre", nombre);
-            if(bd.dameRolUsuario(nombre).equals("admin"))
-                pagina = "/MVC/menuGestionPeliculas.jsp";
-            else
-                pagina = "/MVC/Usuario/ModificarUsuario.jsp";
-            
-            
+            pagina = "/MVC/Usuario/ModificarUsuario.jsp";
         } 
         else
         {
