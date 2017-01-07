@@ -36,6 +36,18 @@
         <servlet-name>MenuGestionPeliculas</servlet-name>
         <servlet-class>Servlets.MenuGestionPeliculas</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AltaSala</servlet-name>
+        <servlet-class>Servlets.AltaSala</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ModificarSala</servlet-name>
+        <servlet-class>Servlets.ModificarSala</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BorrarSala</servlet-name>
+        <servlet-class>Servlets.BorrarSala</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PruebaSession</servlet-name>
         <url-pattern>/PruebaSession</url-pattern>
@@ -71,6 +83,18 @@
     <servlet-mapping>
         <servlet-name>MenuGestionPeliculas</servlet-name>
         <url-pattern>/MenuGestionPeliculas</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AltaSala</servlet-name>
+        <url-pattern>/AltaSala</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ModificarSala</servlet-name>
+        <url-pattern>/ModificarSala</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BorrarSala</servlet-name>
+        <url-pattern>/BorrarSala</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

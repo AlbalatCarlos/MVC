@@ -67,20 +67,19 @@ public class AltaPelicula extends HttpServlet {
         String actores = (String) req.getParameter("actores");
         String datos = (String) req.getParameter("datos");
         String edad = (String) req.getParameter("edad");
-        System.out.println("AQUUIIIII LLEGAAA LA PELI!!!" + sinopsis);
         
         
         
         HttpSession session = req.getSession();
         session.removeAttribute("error");
-        String pagina = "/MVC/Pelicula/ModificarPaliculaAux.jsp";
+        String pagina = "/MVC/Pelicula/ModificarPeliculaAux.jsp";
         String nombreSession = (String)session.getAttribute("nombre");
         
         String rol = bd.dameRolUsuario(nombreSession);
         
         if(bd.IsNullOrWhiteSpace(nombreSession))
         {
-            session.setAttribute("error", "No puede dar de alta un usuario si está logado");
+            session.setAttribute("error", "No puede dar de alta una película si no está logado");
             pagina = "/MVC/Usuario/Login.jsp";
         } 
         else if (bd.existeRegistroEnTabla("USUARIO", "nombre", nombre)) 
@@ -89,6 +88,7 @@ public class AltaPelicula extends HttpServlet {
             {
                 bd.modificarPelicula(nombre, sinopsis, paginaOficial, tituloOriginal, genero, nacionalidad, duracion, ano, distribuidora,
                     director, actores, datos, edad);
+                session.setAttribute("nombrePelicula", nombre);
                 
             }
         } else {
@@ -100,12 +100,11 @@ public class AltaPelicula extends HttpServlet {
             }
         }
         res.sendRedirect(res.encodeRedirectURL(pagina));
-        
-        
-        
-        
 
-        res.sendRedirect(res.encodeRedirectURL("/MVC/agregarPelicula.jsp"));
-
+    }
+    
+    public void destroy() {
+        bd.cerrarConexion();
+        super.destroy();
     }
 }

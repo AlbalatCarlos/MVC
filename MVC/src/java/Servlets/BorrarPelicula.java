@@ -30,13 +30,15 @@ public class BorrarPelicula extends HttpServlet {
         String nombre = (String) req.getParameter("nombrePelicula");
         System.out.println("AQUI LLEGA LA PELICULA A BORRAR" + nombre);
         
-        try {
-            bd.borrarPelicula(nombre);
-        } catch (SQLException ex) {
-            Logger.getLogger(BorrarPelicula.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        bd.borrarPelicula(nombre);
         
-        res.sendRedirect(res.encodeRedirectURL("/pruebaCine2/borrarPelicula.jsp"));
+        
+        res.sendRedirect(res.encodeRedirectURL("/MVC/MenuGestionPeliculas"));
+    }
+    
+    public void destroy() {
+        bd.cerrarConexion();
+        super.destroy();
     }
 
 }

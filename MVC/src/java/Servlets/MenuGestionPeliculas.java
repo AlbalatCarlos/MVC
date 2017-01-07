@@ -23,30 +23,27 @@ public class MenuGestionPeliculas extends HttpServlet {
             HttpServletResponse res) throws ServletException, IOException {
 
         String direccion = (String) req.getParameter("dir");
+        String obj = (String) req.getParameter("obj");
 
         HttpSession session = req.getSession();
         session.removeAttribute("error");
-        String pagina="/MVC/Usuario/Login.jsp";
-        
-        if( direccion.equals("mod"))
-        {
-            pagina = "/MVC/Pelicula/modificarPelicula.jsp";
+        String pagina="/MVC/menuGestionPeliculas.jsp";
+        if(bd.IsNullOrWhiteSpace(direccion) == false){
+            if( direccion.equals("mod"))
+            {
+                pagina = "/MVC/"+obj+"/Modificar"+obj+".jsp";
+            }
+            else if(direccion.equals("alta"))
+            {
+                pagina = "/MVC/"+obj+"/Agregar"+obj+".jsp";
+            }
+            else if(direccion.equals("bor"))
+            {
+                pagina = "/MVC/"+obj+"/Borrar"+obj+".jsp";
+            }
         }
-        else if(direccion.equals("alta"))
-        {
-            pagina = "/MVC/Pelicula/agregarPelicula.jsp";
-        }
-        else if(direccion.equals("bor"))
-        {
-            pagina = "/MVC/Pelicula/borrarPelicula.jsp";
-        }
-        
-       
-         
-        System.out.println("direccion");
         
         res.sendRedirect(res.encodeRedirectURL(pagina));
-        
     }
 
     public void destroy() {
