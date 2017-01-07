@@ -87,7 +87,7 @@ public class ModeloDatos {
             //Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
             Class.forName("org.apache.derby.jdbc.ClientDriver");
             //    con = DriverManager.getConnection(sURL,"","");
-            con = DriverManager.getConnection("jdbc:derby://localhost:1527/MVCAUX", "app", "app");
+            con = DriverManager.getConnection("jdbc:derby://localhost:1527/MVC_CINE", "sa", "sa");
             System.out.println("Se ha conectado");
         } catch (Exception e) {
             System.out.println("No se ha conectado");
@@ -197,6 +197,104 @@ public class ModeloDatos {
         return rol;
     }
     
+    public void actualizarSala(String nombre, int filas, int columnas) {
+        try {
+            String strSQl = "filas=" + filas + ",columnas=" + columnas;
+            set = con.createStatement();
+            set.executeUpdate(
+                    "UPDATE SALA SET " + strSQl + " WHERE nombre "
+                    + " LIKE '%" + nombre + "%'");
+            rs.close();
+            set.close();
+        } catch (Exception e) {
+            System.out.println("No modifica la tabla Sala. Nombre: "+ nombre+" \nException: "+ e);
+        }
+    }
+    
+    public void insertarSala(String nombre, int filas, int columnas) {
+        try {
+            set = con.createStatement();
+            set.executeUpdate("INSERT INTO SALA "
+                    + " (nombre,filas,columnas) VALUES ('" + nombre + "'," + filas
+                    + ","+ columnas+")");
+            rs.close();
+            set.close();
+        } catch (Exception e) {
+            System.out.println("Ya existía la Sala"+ e);
+        }
+    }
+    
+    public void borrarSala(String nombre) {
+        try {
+            set = con.createStatement();
+            set.executeUpdate("DELETE FROM SALA WHERE NOMBRE=" + "'" + nombre + "'");
+            rs.close();
+            set.close();
+        } catch (Exception e) {
+            System.out.println("No borra en la tabla " + e);
+        }
+    }
+    
+    public ArrayList<SALA> dameListaSalas() {
+        try {
+            set = con.createStatement();
+            rs = set.executeQuery("SELECT * FROM SALA");
+
+            ArrayList<SALA> salas = new ArrayList<SALA>();
+            
+
+            //Guardo las salas en un ArrayList
+            while (rs.next()) {
+                try{
+                    SALA sala = new SALA();
+                    sala.nombre =  rs.getString("nombre");
+
+                    sala.filas = rs.getInt("filas");
+
+                    sala.columnas = rs.getInt("columnas");
+
+                    salas.add(sala);
+                }
+                catch(Exception e){
+                    System.out.println("Alguna de las salas tiene datos no validos: "+e);
+                    return new ArrayList<SALA>();
+                }
+            }
+            rs.close();
+            set.close();
+            
+            return salas;
+        } catch (Exception e) {
+            System.out.println("Fallo al listar salas "+ e);
+            return new ArrayList<SALA>();
+        }
+    }
+    
+    public SALA dameSala(String nombreSala)
+    {
+        SALA sala = new SALA();
+        try {
+            set = con.createStatement();
+            rs = set.executeQuery("SELECT * FROM SALA WHERE nombre='"+nombreSala+"'");
+            while (rs.next()) {
+                
+                sala.nombre =  rs.getString("nombre");
+
+                sala.filas = rs.getInt("filas");
+
+                sala.columnas = rs.getInt("columnas");
+                
+            }
+            
+            rs.close();
+            set.close();
+        } catch (Exception e) {
+            System.out.println("No lee el rol de la tabla SALA \nException: "+e);
+            return null;
+        }
+        return sala;
+    }
+    
     public ArrayList<ENTRADA> dameListaEntradas() {
         try {
             set = con.createStatement();
@@ -236,6 +334,50 @@ public class ModeloDatos {
         }
     }
     
+    
+    public ArrayList<PELICULA> dameListaPeliculas() {
+        try {
+            set = con.createStatement();
+            rs = set.executeQuery("SELECT * FROM PELICULA");
+
+            ArrayList<PELICULA> peliculas = new ArrayList<PELICULA>();
+            
+
+            //Guardo las entradas en un ArrayList
+            while (rs.next()) {
+                try{
+                    PELICULA pelicula = new PELICULA();
+                    pelicula.nombre = rs.getString("nombre");
+                    pelicula.anyo = rs.getInt("anyo");
+                    pelicula.director = rs.getString("director");
+                    pelicula.distribuidora = rs.getString("distribuidora");
+                    pelicula.duracion = rs.getDouble("duracion");
+                    pelicula.genero = rs.getString("genero");
+                    pelicula.nacionalidad = rs.getString("nacionalidad");
+                    pelicula.otrosDatos = rs.getString("otrosDatos");
+                    pelicula.paginaOficial = rs.getString("paginaOficial");
+                    pelicula.sipnosis = rs.getString("sinopsis");
+                    pelicula.tituloOriginal = rs.getString("tituloOriginal");
+                    pelicula.actores = rs.getString("actores");
+                    pelicula.edad = rs.getString("edad");
+
+                    peliculas.add(pelicula);
+                }
+                catch(Exception e){
+                    System.out.println("Alguna de las entradas tiene datos no validos: "+e);
+                    return new ArrayList<PELICULA>();
+                }
+            }
+            rs.close();
+            set.close();
+            
+            return peliculas;
+        } catch (Exception e) {
+            System.out.println("Fallo al listar peliculas "+ e);
+            return new ArrayList<PELICULA>();
+        }
+    }
+    
     public PELICULA damePelicula(String nombrePelicula)
     {
         PELICULA pelicula = new PELICULA();
@@ -247,7 +389,7 @@ public class ModeloDatos {
                 pelicula.anyo = rs.getInt("anyo");
                 pelicula.director = rs.getString("director");
                 pelicula.distribuidora = rs.getString("distribuidora");
-                pelicula.duracion = rs.getInt("duracion");
+                pelicula.duracion = rs.getDouble("duracion");
                 pelicula.genero = rs.getString("genero");
                 pelicula.nacionalidad = rs.getString("nacionalidad");
                 pelicula.otrosDatos = rs.getString("otrosDatos");
@@ -262,7 +404,7 @@ public class ModeloDatos {
             rs.close();
             set.close();
         } catch (Exception e) {
-            System.out.println("No lee el rol de la tabla USUARIO \nException: "+e);
+            System.out.println("No lee el rol de la tabla PELICULA \nException: "+e);
             return null;
         }
         return pelicula;
@@ -356,10 +498,8 @@ public class ModeloDatos {
      
      
      
-    public void borrarPelicula(String nombre) throws SQLException {
-
+    public void borrarPelicula(String nombre) {
         try {
-
             set = con.createStatement();
             set.executeUpdate("DELETE FROM PELICULA WHERE NOMBRE=" + "'" + nombre + "'");
             rs.close();
@@ -367,9 +507,6 @@ public class ModeloDatos {
         } catch (Exception e) {
             System.out.println("No borra en la tabla " + e);
         }
-
-        set = con.createStatement();
-
     }
     
     
