@@ -133,8 +133,8 @@
 
             <div class="row">
                 <div class="col-sm-2"></div>
-                <div class="col-sm-2"><a href="/MVC/menuGestionPeliculas.jsp" class="button btn btn-primary btn-md">Volver a menu </a></div>
-                <div class="col-sm-4"><input class="button btn btn-success btn-block" type="submit" value="Alta Pelicula"/></div>
+                <div class="col-sm-2"><a href="/MVC/MenuGestionPeliculas" class="button btn btn-primary btn-md">Volver al menú </a></div>
+                <div class="col-sm-4"><input class="button btn btn-success btn-block" type="submit" value="Alta Película"/></div>
                 <div class="col-sm-2"></div>
                 <div class="col-sm-2"></div>
             </div>

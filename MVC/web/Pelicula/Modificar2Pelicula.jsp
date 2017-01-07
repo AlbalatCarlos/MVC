@@ -4,6 +4,7 @@
     Author     : Jayro
 --%>
 
+<%@page import="java.util.ArrayList"%>
 <%@page import="Servlets.ModeloDatos.PELICULA"%>
 <%@page import="Servlets.ModeloDatos"%>
 <%@page import="java.sql.ResultSet"%>
@@ -42,41 +43,21 @@
                 <form action="/MVC/ModificarPelicula" method="POST">
                     <select  size="10" style="text-align: center" class="form-control  "    name="nombrePelicula">
                         <%
-                            Statement mandato = null;
-                            Connection conexion = null;
-                            String URL = "jdbc:derby://localhost:1527/MVCAUX";
-                            String usuario = "";
-                            String contraseña = "";
                             try {
-                                Class.forName("org.apache.derby.jdbc.ClientDriver");
-                            } catch (Exception e) {
-                                System.out.println("Error al cargar el driver JDBC/ODBC.");
-                                return;
-                            }
-
-                            try {
-                                conexion = DriverManager.getConnection("jdbc:derby://localhost:1527/MVCAUX", "app", "app");
-                                mandato = conexion.createStatement();
-                            } catch (Exception e) {
-                                System.out.println("Problemas al conectar con " + URL);
-                                return;
-                            }
-
-                            /* Leemos de la base de datos */
-                            try {
-                                //
-                                ResultSet resultado = mandato.executeQuery("SELECT nombre FROM PELICULA");
                                 String resp = "";
-
-                                //
-                                while (resultado.next()) {
-                                    resp = resultado.getString("nombre");
+                                ModeloDatos bd = new ModeloDatos();
+                                bd.abrirConexion();
+                                ArrayList<PELICULA> peliculas = bd.dameListaPeliculas();
+                                
+                                for(PELICULA pelicula:peliculas)
+                                {
+                                    resp = pelicula.nombre;
                                     out.println("<option class=\"btn btn-block\" value='" + resp + "' > " + resp + "</option>");
 
                                 }
-
+                                bd.cerrarConexion();
                             } catch (Exception e) {
-
+                                out.println("<option class=\"btn btn-block\" value='' > No hay Películas</option>");
                             }
 
 
@@ -87,7 +68,7 @@
                     <input class="button btn btn-success btn-block " type="submit" value="Modificar Pelicula"/>
                     <br>
                     <br>
-                    <a href="/MVC/menuGestionPeliculas.jsp" class="button btn btn-primary btn-block">Volver a menu</a>
+                    <a href="/MVC/MenuGestionPeliculas" class="button btn btn-primary btn-block">Volver al menú</a>
             </div>
         </form>
     </div>
