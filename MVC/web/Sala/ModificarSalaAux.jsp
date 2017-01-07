@@ -37,7 +37,7 @@
 
 
 
-        <form class="form-group" action="/MVC/AltaSala" method="POST">
+        <form class="form-group col-xs-6 col-xs-offset-3" action="/MVC/AltaSala" method="POST">
 
             <label for="nombre" class="control-label col-xs-3">Nombre Sala:</label>
             <div class="col-xs-9">

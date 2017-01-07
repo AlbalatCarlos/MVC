@@ -24,7 +24,7 @@
 
 
 
-        <form class="form-group" action="/MVC/AltaPelicula" method="POST">
+        <form class="form-group col-xs-6 col-xs-offset-3" action="/MVC/AltaPelicula" method="POST">
 
             <label for="nombrePelicula" class="control-label col-xs-3">Nombre Pelicula:</label>
             <div class="col-xs-9">

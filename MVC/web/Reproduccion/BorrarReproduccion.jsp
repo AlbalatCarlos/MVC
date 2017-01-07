@@ -4,7 +4,7 @@
     Author     : Jayro
 --%>
 
-<%@page import="Servlets.ModeloDatos.PELICULA"%>
+<%@page import="Servlets.ModeloDatos.REPRODUCCION"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Servlets.ModeloDatos"%>
 <%@page import="java.sql.ResultSet"%>
@@ -16,10 +16,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Borrar Pelicula</title>
+        <title>Borrar Reproduccion</title>
         <SCRIPT languaje="JavaScript">
             function pulsar() {
-                alert("PELICULA BORRADA!")
+                alert("REPRODUCCION BORRADA!")
             }</script>
         <meta name="viewport" content="width=device-width , user scalable=no, initial-scale=1.0, maxumun-scale=1.0, minimum-scale=1.0">
         <link rel="stylesheet" href="../css/bootstrap.min.css">
@@ -30,7 +30,7 @@
     <body>
         <header>
             <div class="container" style="text-align: center" >
-                <h1>BORRAR PELICULA</h1>
+                <h1>BORRAR REPRODUCCION</h1>
             </div>
         </header>
         <br>
@@ -39,47 +39,50 @@
             </div>
             <div class="col-sm-4">
                 <div class="panel-group">
-                    <div class="panel panel-body panel-primary" style="text-align: center">Elige una pelicula a borrar</div>
+                    <div class="panel panel-body panel-primary" style="text-align: center">Elige una reproducción a borrar</div>
                 </div>
 
 
-                <form class="form-group" action="/MVC/BorrarPelicula" method="POST">
-                    <select  size="10" style="text-align: center" class="form-control "    name="nombre">
+                <form class="form-group" action="/MVC/BorrarReproduccion" method="POST">
+                    <select  size="10" style="text-align: center" class="form-control"    name="nombre">
                         <%
                             ModeloDatos bd = new ModeloDatos();
                             bd.abrirConexion();
                             try {
                                 String resp = "";
+                                int id = 0;
+                                ArrayList<REPRODUCCION> reproducciones = bd.dameListaReproducciones();
                                 
-                                ArrayList<PELICULA> peliculas = bd.dameListaPeliculas();
-                                
-                                for(PELICULA pelicula : peliculas)
+                                for(REPRODUCCION reproduccion : reproducciones)
                                 {
-                                    resp = pelicula.nombre;
-                                    out.println("<option class=\"btn btn-block\" value='" + resp + "' > " + resp + "</option>");
+                                    id = reproduccion.idReproduccion;
+                                    resp = reproduccion.nombrePelicula + " - " + 
+                                            reproduccion.nombreSala +" - " +
+                                            reproduccion.fecha.toString() + " - " 
+                                            + reproduccion.hora;
+                                    out.println("<option class=\"btn btn-block\" value='" + id + "' > " + resp + "</option>");
 
                                 }
 
                             } catch (Exception e) {
-                                out.println("<option class=\"btn btn-block\" value='' > No hay Películas</option>");
+                                out.println("<option class=\"btn btn-block\" value='' > No hay Reproducciones</option>");
                             }
                             bd.cerrarConexion();
                         %>
                     </select>
                     <br>
                     <br>
-                    <input class="button btn btn-danger btn-block" onclick="pulsar()"  type="submit" value="Borrar Película"/>
+                    <input class="button btn btn-danger btn-block" onclick="pulsar()"  type="submit" value="Borrar Sala"/>
                     
                     <br>
                     <br>
                     <a href="/MVC/MenuGestionPeliculas"  class="button btn btn-primary btn-block">Volver al menú</a>
                 </form>
             </div>
-            <div class="col-sm-4">
-            </div>
+
         </div>
 
-        
+        <div class="col-sm-4"></div>
     </div>
 
 </body>

@@ -404,53 +404,11 @@ public class ModeloDatos {
             rs.close();
             set.close();
         } catch (Exception e) {
-            System.out.println("No lee el rol de la tabla PELICULA \nException: "+e);
+            System.out.println("No lee la tabla PELICULA \nException: "+e);
             return null;
         }
         return pelicula;
     }
-    
-
-    public void cerrarConexion() {
-        try {
-            con.close();
-        } catch (Exception e) {
-        }
-    }
-
-    double calcularGananciaPorCocheYCircuito(String coche, String circuito) {
-        try {
-            double vueltas;
-            double curvasPorVuelta;
-            double gananciaFinal = 0.0;
-            set = con.createStatement();
-            rs = set.executeQuery("SELECT vueltas,curvasPorVuelta FROM CIRCUITO WHERE nombre='"
-                    + circuito +"'");
-            while (rs.next()) {
-                
-                vueltas = rs.getDouble("vueltas");
-                curvasPorVuelta = rs.getDouble("curvasPorVuelta");
-                rs = set.executeQuery("SELECT ganaciaKW FROM COCHE WHERE nombre='"
-                    + coche +"'");
-                while(rs.next()){
-                    
-                    gananciaFinal = vueltas * curvasPorVuelta * rs.getDouble("ganaciaKW");
-                }
-            }
-            rs.close();
-            set.close();
-            
-            return gananciaFinal;
-        } catch (Exception e) {
-            System.out.println("No se ha podido calcular la ganancia");
-            return 0.0;
-        }
-    }
-    
-    
-    
-    
-    
     
     // ----------------------------------------------- GESTION DE PELICULAS ---------------------------------------- Jayro
     
@@ -528,6 +486,85 @@ public class ModeloDatos {
             System.out.println("No inserta en la tabla " + e);
         }
     }
+    
+    public ArrayList<REPRODUCCION> dameListaReproducciones() {
+        try {
+            set = con.createStatement();
+            rs = set.executeQuery("SELECT * FROM SALA");
+
+            ArrayList<REPRODUCCION> reproducciones = new ArrayList<REPRODUCCION>();
+            
+
+            //Guardo las salas en un ArrayList
+            while (rs.next()) {
+                try{
+                    REPRODUCCION reproduccion = new REPRODUCCION();
+                    reproduccion.fecha =  rs.getDate("fecha");
+                    reproduccion.hora = rs.getDouble("hora");
+                    reproduccion.idReproduccion = rs.getInt("idReproduccion");
+                    reproduccion.nombrePelicula = rs.getString("nombrePelicula");
+                    reproduccion.nombreSala = rs.getString("nombreSala");
+
+                    reproducciones.add(reproduccion);
+                }
+                catch(Exception e){
+                    System.out.println("Alguna de las reproducciones tiene datos no validos: "+e);
+                    return new ArrayList<REPRODUCCION>();
+                }
+            }
+            rs.close();
+            set.close();
+            
+            return reproducciones;
+        } catch (Exception e) {
+            System.out.println("Fallo al listar reproducciones "+ e);
+            return new ArrayList<REPRODUCCION>();
+        }
+    }
+    
+
+    public void cerrarConexion() {
+        try {
+            con.close();
+        } catch (Exception e) {
+        }
+    }
+
+    double calcularGananciaPorCocheYCircuito(String coche, String circuito) {
+        try {
+            double vueltas;
+            double curvasPorVuelta;
+            double gananciaFinal = 0.0;
+            set = con.createStatement();
+            rs = set.executeQuery("SELECT vueltas,curvasPorVuelta FROM CIRCUITO WHERE nombre='"
+                    + circuito +"'");
+            while (rs.next()) {
+                
+                vueltas = rs.getDouble("vueltas");
+                curvasPorVuelta = rs.getDouble("curvasPorVuelta");
+                rs = set.executeQuery("SELECT ganaciaKW FROM COCHE WHERE nombre='"
+                    + coche +"'");
+                while(rs.next()){
+                    
+                    gananciaFinal = vueltas * curvasPorVuelta * rs.getDouble("ganaciaKW");
+                }
+            }
+            rs.close();
+            set.close();
+            
+            return gananciaFinal;
+        } catch (Exception e) {
+            System.out.println("No se ha podido calcular la ganancia");
+            return 0.0;
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
 
 }
     

@@ -46,9 +46,11 @@
                 <form class="form-group" action="/MVC/BorrarSala" method="POST">
                     <select  size="10" style="text-align: center" class="form-control "    name="nombre">
                         <%
+                            ModeloDatos bd = new ModeloDatos();
+                            bd.abrirConexion();
                             try {
                                 String resp = "";
-                                ModeloDatos bd = new ModeloDatos();
+                                
                                 ArrayList<SALA> salas = bd.dameListaSalas();
                                 
                                 for(SALA sala : salas)
@@ -61,8 +63,7 @@
                             } catch (Exception e) {
                                 out.println("<option class=\"btn btn-block\" value='' > No hay Salas</option>");
                             }
-
-
+                            bd.cerrarConexion();
                         %>
                     </select>
                     <br>
