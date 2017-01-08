@@ -87,7 +87,7 @@ public class ModeloDatos {
             //Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
             Class.forName("org.apache.derby.jdbc.ClientDriver");
             //    con = DriverManager.getConnection(sURL,"","");
-            con = DriverManager.getConnection("jdbc:derby://localhost:1527/MVCAUX", "app", "app");
+            con = DriverManager.getConnection("jdbc:derby://localhost:1527/MVC_CINE", "sa", "sa");
             System.out.println("Se ha conectado");
         } catch (Exception e) {
             System.out.println("No se ha conectado");

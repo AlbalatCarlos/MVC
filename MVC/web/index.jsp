@@ -40,7 +40,7 @@
             ModeloDatos bd = new ModeloDatos();
             bd.abrirConexion();
             String rol = bd.dameRolUsuario(nombre);
-            bd.cerrarConexion();
+            
 
 
         %>
@@ -91,7 +91,7 @@
 
                     try {
                        // ModeloDatos bd = new ModeloDatos();
-                        bd.abrirConexion();
+                        
                         String resp = "";
                         int id = 0;
                         ArrayList<PELICULA> peliculas = bd.dameListaPeliculas();
@@ -114,7 +114,7 @@
                             out.println("<input  type =\"hidden\" name = \"nombrePelicula\" value =\"" + pelicula.nombre + "\">");
 
                             out.println("<input style='position:absolute;bottom:0; margin-bottom:22px;left: 69px;' class=\"bottomaligned button btn btn-link btn-xs\" type=\"submit\" value=\"+info\"/>");
-                            out.println("<input class=\"bottomaligned button btn btn-success btn-xs\" type=\"submit\" value=\"COMPRAR ENTRADAS\"/>");
+                            out.println("<input onclick=\"location.href='/MVC/MenuEntradas'\" class=\"bottomaligned button btn btn-success btn-xs\" value=\"COMPRAR ENTRADAS\"/>");
                             out.println("<br/><br/>");
 
                             out.println("</div>");
@@ -122,13 +122,13 @@
                             out.println("</form>");
 
                         }
-                        bd.cerrarConexion();
+                       
 
                     } catch (Exception e) {
                         out.println("<option class=\"btn btn-block\" value='' > No hay Peliculas</option>");
                     }
 
-                    //out.println("</table>");
+                     bd.cerrarConexion();
 
                 %>
 

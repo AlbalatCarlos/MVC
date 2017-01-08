@@ -1,16 +1,23 @@
 <%-- 
-    Document   : agregarPeliculas
-    Created on : 03-ene-2017, 17:24:08
+    Document   : altaEntrada
+    Created on : 06-ene-2017, 16:40:51
     Author     : Jayro
 --%>
 
+<%@page import="Servlets.ModeloDatos.ENTRADA"%>
+<%@page import="Servlets.ModeloDatos.REPRODUCCION"%>
+<%@page import="Servlets.ModeloDatos.SALA"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Servlets.ModeloDatos"%>
 <%@page import="Servlets.ModeloDatos.*"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.Statement"%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Agregar reproducción formulario</title>
+        <title>Modificar reproduccion formulario</title>
         <meta name="viewport" content="width=device-width , user scalable=no, initial-scale=1.0, maxumun-scale=1.0, minimum-scale=1.0">
         <link rel="stylesheet" href="../css/bootstrap.min.css">
         <link rel="stylesheet" href="../css/estilos.css">
@@ -18,123 +25,112 @@
         <script src="../js/bootstrap.min.js"></script>
     </head>
     <body>
+        
+        
         <%
-            
-            String idReproduccion = (String) session.getAttribute("idReproduccion");
-            
             ModeloDatos bd = new ModeloDatos();
             bd.abrirConexion();
+            
+            String referencia = (String) session.getAttribute("referencia");
+            ENTRADA entradaSession = null;
+            if(bd.IsNullOrWhiteSpace(referencia) == false)
+            {
+                entradaSession = bd.dameEntrada(referencia);
+            }
+            
+            String idReproduccion = (String) session.getAttribute("idReproduccion");
+            if(bd.IsNullOrWhiteSpace(idReproduccion) && (entradaSession != null))
+            {
+                idReproduccion = ""+entradaSession.idReproduccion;
+            }
+            
             REPRODUCCION reproduccion =  bd.dameReproduccion(idReproduccion);
+            SALA sala =  bd.dameSala(reproduccion.nombreSala);
+            ArrayList<ENTRADA> entradas = bd.dameListaEntradasPorIdReproduccion(idReproduccion);
             String nombre= (String) session.getAttribute("nombre");
+            
             
             
         %>
         <header>
             <div class="container" style="text-align: center">
-                <h1>MODIFICAR SALA</h1>
+                <h1>MODIFICAR ENTRADA</h1>
             </div>
         </header>
         <br>
 
 
 
-        <form class="form-group col-xs-6 col-xs-offset-3" action="/MVC/AltaReproduccion" method="POST">
+        <form class="form-group col-xs-6 col-xs-offset-3" action="/MVC/AltaEntrada" method="POST">
 
-            
-            <label class="control-label col-xs-3">Nombre Película:</label>
-            <div class="col-xs-9">
-                <select required  style="text-align: center" class="form-control "    name="nombrePelicula">
+            <div class="col-xs-9 col-xs-offset-3">
+                <div  style="text-align: center" class="butacas">
                         <%
                             
-                            
-                            /* Leemos de la base de datos */
                             try {
-                                ArrayList<PELICULA> peliculas = bd.dameListaPeliculas();
-                                String resp = "", selected;
-
-                                for(PELICULA pelicula : peliculas)
+                                String styleYOnClick = "",icono;
+                                out.println("<div class='row'>");
+                                for(int i=1;i<=(sala.filas * sala.columnas);i++)
                                 {
-                                    selected = "";
-                                    resp = pelicula.nombre;
-                                    if(resp.equals(reproduccion.nombrePelicula)){selected="selected";}
-                                    out.println("<option class=\"form-control\" "+selected+" value='" + resp + "' > " + resp + "</option>");
+                                    if((i % sala.columnas) == 1)
+                                        out.println("</div><br/><div class='row'>");
+                                    
+                                    int columna = ((i-1) % sala.columnas)+1;
+                                    int fila = ((i-1) / sala.columnas)+1;
+                                    styleYOnClick = "style='width:50px;display:inline-block; cursor:pointer;' onclick='SeleccionarButaca("+fila+","+columna+",this)'";
+                                    icono= "O";
+                                    for(ENTRADA entrada : entradas)
+                                    {
+                                        
+                                        if(entrada.fila == fila && entrada.columna==columna)
+                                        {
+                                            icono= "X";
+                                            styleYOnClick = "style='width:50px;display:inline-block;'";
+                                        }
+                                    }
+                                    out.println("<div "+ styleYOnClick +" > "+icono + "</div>");
                                 }
+                                out.println("</div>");
 
                             } catch (Exception e) {
-                                out.println("<option class=\"form-control\" value='' > No hay Películas</option>");
+                                
                             }
-
+                            bd.cerrarConexion();
                         %>
-                    </select>
+                    </div>
             </div>
-            <br>
-            <br>
-
+            <br/>
+            <div class="form-group row">
+                <label class="control-label col-xs-3">Fila</label>
+                <div class="col-xs-9">
+                    <input required type="number"  class="form-control" id="fila" name="fila" value="<%if(entradaSession!=null)out.print(entradaSession.fila);%>" placeholder="Fila">
+                </div>
+            </div>
             
-            <label for="nombreSala" class="control-label col-xs-3">Nombre Sala:</label>
-            <div class="col-xs-9">
-                <select required  style="text-align: center" class="form-control" id="nombreSala"   name="nombreSala">
-                    <%
-
-                        /* Leemos de la base de datos */
-                        try {
-                            ArrayList<SALA> salas = bd.dameListaSalas();
-                            String resp = "",selected;
-                            
-                            for(SALA sala : salas)
-                            {
-                                selected = "";
-                                resp = sala.nombre;
-                                if(resp.equals(reproduccion.nombreSala)){selected="selected";}
-                                out.println("<option class=\"form-control\" value='" + resp + "' > " + resp + "</option>");
-                            }
-
-                        } catch (Exception e) {
-                            out.println("<option class=\"form-control\" value='' > No hay Salas</option>");
-                        }
-
-                        bd.cerrarConexion();
-                    %>
-                </select>
+            <div class="form-group row">
+                <label class="control-label col-xs-3">Columna</label>
+                <div class="col-xs-9">
+                    <input required type="number"  class="form-control" id="columna" name="columna"  value="<%if(entradaSession!=null)out.print(entradaSession.columna);%>" placeholder="Columna">
+                </div>
             </div>
-            <br>
-            <br>
-
-            <label class="control-label col-xs-3">Fecha:</label>
-            <div class="col-xs-9">
-                <input required type="date" value="<%out.print(reproduccion.fecha);%>" class="form-control" id="fecha" name="fecha" placeholder="Fecha">
+            
+            <div class="form-group row">
+                <label class="control-label col-xs-3">Referencia</label>
+                <div class="col-xs-9">
+                    <input required type="number"  class="form-control" id="referencia" name="referencia" value="<%if(entradaSession!=null)out.print(referencia);%>" placeholder="Referencia">
+                </div>
             </div>
-            <br>
-            <br>
-
-
-            <label class="control-label col-xs-3">Hora:</label>
-            <div class="col-xs-9">
-                <input required type="number" value="<%out.print(reproduccion.hora);%>" class="form-control" name="hora" placeholder="Hora">
-            </div>
-            <br>
-            <br>
+            
+            <input style="display:none" type="number"  class="form-control" name="idReproduccion" value="<%out.print(idReproduccion);%>">
             
             
-            <label class="control-label col-xs-3">Id Reproducción</label>
-            <div class="col-xs-9">
-                <input required type="number" value="<%out.print(reproduccion.idReproduccion);%>" class="form-control" name="idReproduccion" placeholder="Id Reproducción">
-            </div>
-            <br>
-            <br>
-
-
-            <br>
-            <br>
-            <br>
-            <br>
-
+            <input style="display:none;" type="text"  class="form-control" name="nombreUsuario" value="<%out.print(nombre);%>">
+          
             <div class="row">
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2"><a href="/MVC/MenuGestionPeliculas" class="button btn btn-primary btn-md">Volver a menú </a></div>
-                <div class="col-sm-4"><input class="button btn btn-success btn-block" type="submit" value="Modificar Reproduccion"/></div>
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2"></div>
+                
+                <div class="col-xs-4 col-xs-offset-1"><a href="/MVC/MenuEntradas" class="button btn btn-primary btn-md">Volver a menu </a></div>
+                <div class="col-sm-5"><input class="button btn btn-success btn-block" type="submit" value="Alta Entrada"/></div>
+                
             </div>
 
 
@@ -143,3 +139,12 @@
 
     </body>
 </html>
+<script type="text/javascript">
+    
+    function SeleccionarButaca( fila, columna,butaca)
+    {
+        butaca.style.color="red";
+        $("#fila").val(fila);
+        $("#columna").val(columna);        
+    }
+</script>

@@ -31,18 +31,7 @@
             ModeloDatos bd = new ModeloDatos();
             bd.abrirConexion();
             
-            String referencia = (String) session.getAttribute("referencia");
-            ENTRADA entradaSession = null;
-            if(bd.IsNullOrWhiteSpace(referencia) == false)
-            {
-                entradaSession = bd.dameEntrada(referencia);
-            }
-            
             String idReproduccion = (String) session.getAttribute("idReproduccion");
-            if(bd.IsNullOrWhiteSpace(idReproduccion) && (entradaSession != null))
-            {
-                idReproduccion = ""+entradaSession.idReproduccion;
-            }
             
             REPRODUCCION reproduccion =  bd.dameReproduccion(idReproduccion);
             SALA sala =  bd.dameSala(reproduccion.nombreSala);
@@ -95,7 +84,7 @@
                             } catch (Exception e) {
                                 
                             }
-
+                            bd.cerrarConexion();
                         %>
                     </div>
             </div>
@@ -103,21 +92,21 @@
             <div class="form-group row">
                 <label class="control-label col-xs-3">Fila</label>
                 <div class="col-xs-9">
-                    <input type="number"  class="form-control" id="fila" name="fila" value="<%out.print(entradaSession.fila);%>" placeholder="Fila">
+                    <input required type="number"  class="form-control" id="fila" name="fila" value="" placeholder="Fila">
                 </div>
             </div>
             
             <div class="form-group row">
                 <label class="control-label col-xs-3">Columna</label>
                 <div class="col-xs-9">
-                    <input type="number"  class="form-control" id="columna" name="columna"  value="<%out.print(entradaSession.columna);%>" placeholder="Columna">
+                    <input required type="number"  class="form-control" id="columna" name="columna"  value="" placeholder="Columna">
                 </div>
             </div>
             
             <div class="form-group row">
                 <label class="control-label col-xs-3">Referencia</label>
                 <div class="col-xs-9">
-                    <input type="number"  class="form-control" id="referencia" name="referencia" value="<%out.print(referencia);%>" placeholder="Referencia">
+                    <input required type="number"  class="form-control" id="referencia" name="referencia" value="" placeholder="Referencia">
                 </div>
             </div>
             
@@ -128,7 +117,7 @@
           
             <div class="row">
                 
-                <div class="col-xs-4 col-xs-offset-1"><a href="/MVC/" class="button btn btn-primary btn-md">Volver a menu </a></div>
+                <div class="col-xs-4 col-xs-offset-1"><a href="/MVC/MenuEntradas" class="button btn btn-primary btn-md">Volver a menu </a></div>
                 <div class="col-sm-5"><input class="button btn btn-success btn-block" type="submit" value="Alta Entrada"/></div>
                 
             </div>

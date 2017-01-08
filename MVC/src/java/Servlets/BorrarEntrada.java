@@ -32,7 +32,7 @@ public class BorrarEntrada extends HttpServlet {
         bd.borrarEntrada(referencia);
         
         
-        res.sendRedirect(res.encodeRedirectURL("/MVC/index.jpg"));
+        res.sendRedirect(res.encodeRedirectURL("/MVC/MenuEntradas"));
     }
     
     public void destroy() {

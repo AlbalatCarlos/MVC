@@ -4,7 +4,7 @@
     Author     : Jayro
 --%>
 
-<%@page import="Servlets.ModeloDatos.REPRODUCCION"%>
+<%@page import="Servlets.ModeloDatos.ENTRADA"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Servlets.ModeloDatos"%>
 <%@page import="java.sql.ResultSet"%>
@@ -43,40 +43,39 @@
                 </div>
 
 
-                <form class="form-group" action="/MVC/BorrarReproduccion" method="POST">
-                    <select  size="10" style="text-align: center" class="form-control"    name="nombre">
+                <form class="form-group" action="/MVC/BorrarEntrada" method="POST">
+                    <select  size="10" style="text-align: center" class="form-control"    name="referencia">
                         <%
-                            ModeloDatos bd = new ModeloDatos();
-                            bd.abrirConexion();
                             try {
-                                String resp = "";
-                                int id = 0;
-                                ArrayList<REPRODUCCION> reproducciones = bd.dameListaReproducciones();
-                                
-                                for(REPRODUCCION reproduccion : reproducciones)
-                                {
-                                    id = reproduccion.idReproduccion;
-                                    resp = reproduccion.nombrePelicula + " - " + 
-                                            reproduccion.nombreSala +" - " +
-                                            reproduccion.fecha.toString() + " - " 
-                                            + reproduccion.hora;
-                                    out.println("<option class=\"btn btn-block\" value='" + id + "' > " + resp + "</option>");
+                                    String nombre = (String) session.getAttribute("nombre");
+                                    ModeloDatos bd = new ModeloDatos();
+                                    bd.abrirConexion();
+                                    String resp = "";
+                                    int id = 0;
+                                    ArrayList<ENTRADA> entradas = bd.dameListaEntradasPorNombreUsuario(nombre);
 
+                                    for (ENTRADA entrada : entradas) {
+                                        id = entrada.referencia;
+                                        resp = entrada.fila + " - "
+                                                + entrada.columna + " - "
+                                                + entrada.referencia;
+                                        out.println("<option class=\"btn btn-block\" value='" + id + "' > " + resp + "</option>");
+
+                                    }
+                                    bd.cerrarConexion();
+
+                                } catch (Exception e) {
+                                    out.println("<option class=\"btn btn-block\" value='' > No hay Entradas</option>");
                                 }
-
-                            } catch (Exception e) {
-                                out.println("<option class=\"btn btn-block\" value='' > No hay Reproducciones</option>");
-                            }
-                            bd.cerrarConexion();
                         %>
                     </select>
                     <br>
                     <br>
-                    <input class="button btn btn-danger btn-block" onclick="pulsar()"  type="submit" value="Borrar Reproducción"/>
+                    <input class="button btn btn-danger btn-block" onclick="pulsar()"  type="submit" value="Borrar Entrada"/>
                     
                     <br>
                     <br>
-                    <a href="/MVC/MenuGestionPeliculas"  class="button btn btn-primary btn-block">Volver al menú</a>
+                    <a href="/MVC/MenuEntradas"  class="button btn btn-primary btn-block">Volver al menú</a>
                 </form>
             </div>
 

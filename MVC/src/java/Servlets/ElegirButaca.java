@@ -22,22 +22,23 @@ public class ElegirButaca extends HttpServlet {
             HttpServletResponse res) throws ServletException, IOException {
         
         ModeloDatos bd = new ModeloDatos();
-        
+        bd.abrirConexion();
         HttpSession session = req.getSession();
         
         String idReproduccion = (String) req.getParameter("idReproduccion");
-        String referencia = (String) req.getParameter("idReproduccion");
-        
-        if(bd.IsNullOrWhiteSpace(referencia) == false)
-        {
-            session.setAttribute("referencia", referencia);
-        }
+        String referencia = (String) req.getParameter("referencia");
         
         if(bd.IsNullOrWhiteSpace(idReproduccion) == false)
         {
             session.setAttribute("idReproduccion", idReproduccion);
         }
         
+        if(bd.IsNullOrWhiteSpace(referencia) == false)
+        {
+            session.setAttribute("referencia", referencia);
+            session.setAttribute("idReproduccion", bd.dameEntrada(referencia).idReproduccion);
+        }
+        bd.cerrarConexion();
         res.sendRedirect(res.encodeRedirectURL("/MVC/Entrada/AgregarEntradaAux.jsp"));
     }
 }
