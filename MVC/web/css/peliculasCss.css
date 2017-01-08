@@ -1,0 +1,109 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 21-dic-2016, 11:34:22
+    Author     : Jayro
+*/
+body {
+    
+    background: linear-gradient(to bottom, #101010 0%, #484848 100%);
+}
+#contenedor{
+margin:auto;/*para centrarlo el contenedor debe poseer este margen*/
+padding:0;
+width:632px;/*si queremos que salga 4 veces la imagen con separación de margenes a la derecha de 10px y  incluyendo bordes de 2px, quedando todo junto hacia el centro hacemos esto:
+-->Multiplicamos el width=ancho x 4 del espacio 1 =   144 x 4 = 576px  +
+-->Multiplicamos el margin=margen x 4 del espacio 1 =  10 x 4 =  40px
+-->Sumamos el border=borde derecho y isquierdo del
+espacio 1 y luego lo multiplicamos x 4 =            (2 + 2) 4 =  16px
+                                                                ------
+-->Y nos dar como el total el width que nesecitamos -----------> 632px
+
+NOTA: si ponemos el width:auto del contenedor, todo se ira hacia el margen izquierdo. */
+text-align:center;
+height:100%;/*aqui puedes poner una altura deseada teniedo en cuenta que tiene que ser mayor o igual al de la imagen, y si tiene bordes la imagen se le suma a la altura, igual si el
+div->espacio 1 tuviera bordes se lo sumarias a la altura=height,  y cuando hablo que le sumarias el borde seria el borde de arriba + el borde de abajo ahi que tenerlo en cuenta, por recomendación usar height=auto */
+background:transparent;
+}
+
+#contenedoraux{
+    
+ width:768px;
+ border:solid black 1px;
+ margin:auto;
+ height:450px;
+ clear:both;
+ float:none;
+ background: #707070;
+ -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+
+border-radius: 10px 10px 10px 10px;
+-moz-border-radius: 10px 10px 10px 10px;
+-webkit-border-radius: 10px 10px 10px 10px;
+border: 0px solid #000000;
+    
+}
+
+
+#espacio1{
+padding:0;
+width:144px;
+height:180px;
+float:right;
+background:#575756;
+margin-top: 10px;
+margin-bottom: 10px;
+/*height:auto;*/
+color:white;
+font-size:10pt;
+margin-right:40px;
+position:relative;
+
+border-color: black;
+border-radius: 10px 10px 10px 10px;
+-moz-border-radius: 10px 10px 10px 10px;
+-webkit-border-radius: 10px 10px 10px 10px;
+border: 0px solid #000000;
+ -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);   
+}
+#comprarEntradas{
+font-size: 8pt;
+position: absolute;
+bottom: 0px;
+text-align: center;
+width:144px;
+}
+
+
+#info{
+font-size: 8pt;
+position: absolute;
+bottom: 0px;
+text-align: center;
+width:144px;
+margin-bottom: 15px;
+}
+
+#barraSeparadora{
+ width:768px;
+ height:50px;
+ background: #707070;
+ margin:auto;
+ font-size: 40px;
+ text-align: center;
+ border-radius: 10px 10px 10px 10px;
+-moz-border-radius: 10px 10px 10px 10px;
+-webkit-border-radius: 10px 10px 10px 10px;
+border: 0px solid #000000;
+ -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);   
+    
+}
