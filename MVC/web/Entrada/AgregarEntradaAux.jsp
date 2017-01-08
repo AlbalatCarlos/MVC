@@ -53,7 +53,7 @@
         <form class="form-group col-xs-6 col-xs-offset-3" action="/MVC/AltaReproduccion" method="POST">
 
             <div class="col-xs-9 col-xs-offset-3">
-                <div  style="text-align: center" >
+                <div  style="text-align: center" class="butacas">
                         <%
                             
                             try {
@@ -64,9 +64,9 @@
                                     if((i % sala.columnas) == 1)
                                         out.println("</div><br/><div class='row'>");
                                     
-                                    int columna = (i % sala.columnas)+1;
-                                    int fila = (i / sala.columnas)+1;
-                                    styleYOnClick = "style='width:50px;display:inline-block; cursor:pointer;' onclick='SeleccionarButaca("+fila+","+columna+")'";
+                                    int columna = ((i-1) % sala.columnas)+1;
+                                    int fila = ((i-1) / sala.columnas)+1;
+                                    styleYOnClick = "style='width:50px;display:inline-block; cursor:pointer;' onclick='SeleccionarButaca("+fila+","+columna+",this)'";
                                     icono= "O";
                                     for(ENTRADA entrada : entradas)
                                     {
@@ -133,8 +133,12 @@
     </body>
 </html>
 <script type="text/javascript">
-    function SeleccionarButaca( fila, columna)
+    
+    
+    
+    function SeleccionarButaca( fila, columna,butaca)
     {
+        butaca.style.color="red";
         $("#fila").val(fila);
         $("#columna").val(columna);        
     }
