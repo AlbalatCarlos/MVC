@@ -60,6 +60,10 @@
         <servlet-name>InfoPelicula</servlet-name>
         <servlet-class>Servlets.InfoPelicula</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ElegirButaca</servlet-name>
+        <servlet-class>Servlets.ElegirButaca</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PruebaSession</servlet-name>
         <url-pattern>/PruebaSession</url-pattern>
@@ -119,6 +123,10 @@
     <servlet-mapping>
         <servlet-name>InfoPelicula</servlet-name>
         <url-pattern>/InfoPelicula</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ElegirButaca</servlet-name>
+        <url-pattern>/ElegirButaca</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
