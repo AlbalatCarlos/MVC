@@ -21,8 +21,8 @@
 <!DOCTYPE html>
 <html style="text-align:center;">
     <head>
-        
-        
+
+
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Index</title>
@@ -35,63 +35,83 @@
     </head>
     <body style="text-align:center;" style="border:solid black 2px;">
         <div><img src="Imagenes/cabeceraCine.jpg" width="768" height="200" alt="imagCabecera"></div>
-        <div id="barraSeparadora">CARTELERA<img width="100" height="105" align="top" style="position:absolute" style="left:20px"></div>
+        
+        <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8" >
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">CINES CARJAY</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Cartelera</a></li>
+                    
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="../MVC/AltaUsuario"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                    <li><a href="../MVC/Login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                </ul>
+            </div>
+        </nav>
+                </div>
+        </div>
+
+        
         <br>
         <div class="row">
-        <div class="col-sm-2"></div>
-        <div class="col-sm-8" id="contenedorCartelera" >
-            
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8" id="contenedorCartelera" >
 
 
-           
-            <%
 
-                try {
-                    ModeloDatos bd = new ModeloDatos();
-                    bd.abrirConexion();
-                    String resp = "";
-                    int id = 0;
-                    ArrayList<PELICULA> peliculas = bd.dameListaPeliculas();
 
-                    out.println("</br>");
-                   
-                    for (PELICULA pelicula : peliculas) {
-                       
-                        out.print("<form  class='col-sm-3 form-group' style='height:200px;'  action=\"/MVC/InfoPelicula\" Method=\"POST\">");
-                         out.print("<div class='contenedorPelicula'>");
+                <%
+
+                    try {
+                        ModeloDatos bd = new ModeloDatos();
+                        bd.abrirConexion();
+                        String resp = "";
+                        int id = 0;
+                        ArrayList<PELICULA> peliculas = bd.dameListaPeliculas();
+
                         out.println("</br>");
-                        out.println("</br>");
-                        out.println("<tr>" + "<td>" + pelicula.nombre + "</td>" + "</tr>");
-                        out.println("</br>");
-                        out.println("Director:" + pelicula.director);
-                        out.println("</br>");
-                        out.println("Edad:" + pelicula.edad);
-                        out.println("</br>");
-                        out.println("</br>");
-                        out.println("<input  type =\"hidden\" name = \"nombrePelicula\" value =\""+pelicula.nombre+"\">");
-                        
-                        out.println("<input style='position:absolute;bottom:0; margin-bottom:22px;left: 69px;' class=\"bottomaligned button btn btn-link btn-xs\" type=\"submit\" value=\"+info\"/>");
-                        out.println("<input class=\"bottomaligned button btn btn-success btn-xs\" type=\"submit\" value=\"COMPRAR ENTRADAS\"/>");
-                        out.println("<br/><br/>");
-                          
-                        out.println("</div>");
-                        
-                        out.println("</form>");
-                        
+
+                        for (PELICULA pelicula : peliculas) {
+
+                            out.print("<form  class='col-sm-3 form-group' style='height:200px;'  action=\"/MVC/InfoPelicula\" Method=\"POST\">");
+                            out.print("<div class='contenedorPelicula'>");
+                            out.println("</br>");
+                            out.println("</br>");
+                            out.println("<tr>" + "<td>" + pelicula.nombre + "</td>" + "</tr>");
+                            out.println("</br>");
+                            out.println("Director:" + pelicula.director);
+                            out.println("</br>");
+                            out.println("Edad:" + pelicula.edad);
+                            out.println("</br>");
+                            out.println("</br>");
+                            out.println("<input  type =\"hidden\" name = \"nombrePelicula\" value =\"" + pelicula.nombre + "\">");
+
+                            out.println("<input style='position:absolute;bottom:0; margin-bottom:22px;left: 69px;' class=\"bottomaligned button btn btn-link btn-xs\" type=\"submit\" value=\"+info\"/>");
+                            out.println("<input class=\"bottomaligned button btn btn-success btn-xs\" type=\"submit\" value=\"COMPRAR ENTRADAS\"/>");
+                            out.println("<br/><br/>");
+
+                            out.println("</div>");
+
+                            out.println("</form>");
+
+                        }
+                        bd.cerrarConexion();
+
+                    } catch (Exception e) {
+                        out.println("<option class=\"btn btn-block\" value='' > No hay Peliculas</option>");
                     }
-                    bd.cerrarConexion();
 
-                } catch (Exception e) {
-                    out.println("<option class=\"btn btn-block\" value='' > No hay Peliculas</option>");
-                }
+                    //out.println("</table>");
 
-                
+                %>
 
-                //out.println("</table>");
-
-            %>
-            
-        </div>    
+            </div>    
         </div>             
     </body>
 </html>

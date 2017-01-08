@@ -32,7 +32,11 @@ public class AltaUsuario extends HttpServlet {
         String pagina = "/MVC/Usuario/Login.jsp";
         String nombreSession = (String)session.getAttribute("nombre");
         
-        if(bd.IsNullOrWhiteSpace(nombreSession))
+        if(bd.IsNullOrWhiteSpace(nombre))
+        {
+            pagina = "/MVC/Usuario/AltaUsuario.jsp";
+        }
+        else if(bd.IsNullOrWhiteSpace(nombreSession))
         {
             bd.insertarUsuario(nombre, apellidos, pass, rol);
         } 
@@ -46,8 +50,9 @@ public class AltaUsuario extends HttpServlet {
                 bd.insertarUsuario(nombre, apellidos, pass, rol);
                 pagina = "/MVC/Usuario/ModificarUsuario.jsp";
             }
-            else
+            else{
                 session.setAttribute("error", "No puede dar de alta un usuario si está logado");
+            }
         }
         res.sendRedirect(res.encodeRedirectURL(pagina));
     }

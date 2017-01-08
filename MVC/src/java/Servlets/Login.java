@@ -27,8 +27,13 @@ public class Login extends HttpServlet {
 
         HttpSession session = req.getSession();
         session.removeAttribute("error");
-        String pagina="";
-        if (bd.Logearse(nombre, pass)) {
+        String pagina;
+        
+        if( bd.IsNullOrWhiteSpace(nombre))
+        {
+            pagina="/MVC/Usuario/Login.jsp";
+        }
+        else if (bd.Logearse(nombre, pass)) {
             session.setAttribute("nombre", nombre);
             if(bd.dameRolUsuario(nombre).equals("admin"))
                 pagina = "/MVC/menuGestionPeliculas.jsp";
