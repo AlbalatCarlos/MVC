@@ -56,6 +56,10 @@
         <servlet-name>BorrarReproduccion</servlet-name>
         <servlet-class>Servlets.BorrarReproduccion</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>InfoPelicula</servlet-name>
+        <servlet-class>Servlets.InfoPelicula</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PruebaSession</servlet-name>
         <url-pattern>/PruebaSession</url-pattern>
@@ -111,6 +115,10 @@
     <servlet-mapping>
         <servlet-name>BorrarReproduccion</servlet-name>
         <url-pattern>/BorrarReproduccion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InfoPelicula</servlet-name>
+        <url-pattern>/InfoPelicula</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
