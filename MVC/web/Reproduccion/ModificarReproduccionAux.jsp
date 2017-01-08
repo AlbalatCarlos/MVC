@@ -38,7 +38,7 @@
 
 
 
-        <form class="form-group col-xs-6 col-xs-offset-3" action="/MVC/AltaSala" method="POST">
+        <form class="form-group col-xs-6 col-xs-offset-3" action="/MVC/AltaReproduccion" method="POST">
 
             
             <label class="control-label col-xs-3">Nombre Película:</label>
@@ -85,7 +85,7 @@
                             {
                                 selected = "";
                                 resp = sala.nombre;
-                                if(resp.equals(reproduccion.nombrePelicula)){selected="selected";}
+                                if(resp.equals(reproduccion.nombreSala)){selected="selected";}
                                 out.println("<option class=\"form-control\" value='" + resp + "' > " + resp + "</option>");
                             }
 
@@ -110,15 +110,15 @@
 
             <label class="control-label col-xs-3">Hora:</label>
             <div class="col-xs-9">
-                <input required type="number" value="<%out.print(reproduccion.hora);%>" class="form-control" name="hora" placeholder="hora">
+                <input required type="number" value="<%out.print(reproduccion.hora);%>" class="form-control" name="hora" placeholder="Hora">
             </div>
             <br>
             <br>
             
             
-            <label class="control-label col-xs-3">Columnas:</label>
+            <label class="control-label col-xs-3">Id Reproducción</label>
             <div class="col-xs-9">
-                <input required type="number" value="<%out.print(sala.columnas);%>" class="form-control" name="columnas" placeholder="Columnas">
+                <input required type="number" value="<%out.print(reproduccion.idReproduccion);%>" class="form-control" name="idReproduccion" placeholder="Id Reproducción">
             </div>
             <br>
             <br>

@@ -109,7 +109,7 @@
 
             <label class="control-label col-xs-3">Id Reproduccion:</label>
             <div class="col-xs-9">
-                <input type="text" class="form-control" name="idReproduccion" placeholder="Id Reproduccion">
+                <input type="number" class="form-control" name="idReproduccion" placeholder="Id Reproduccion">
             </div>
             <br>
             <br>
