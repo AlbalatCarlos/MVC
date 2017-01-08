@@ -71,6 +71,8 @@
 					</label>
 					<input class="btn btn-block btn-lg btn-success submit" type="submit" value="Modificar">
                                         <br/>
+                                        <a href="/MVC/index.jsp" class="button btn btn-primary btn-md">Volver a cartelera </a>
+                                        <br/>
 			
 			
 	</div>

@@ -65,6 +65,8 @@
 					<input class="btn btn-block btn-lg btn-success submit" type="submit" value="Login">
                                         <br/>
 			<a href="../AltaUsuario" class="btn btn-sm btn-primary register">Registrarse</a>
+                        
+                        
 			
 	</div>
 </div>
