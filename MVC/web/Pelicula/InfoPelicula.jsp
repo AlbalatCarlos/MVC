@@ -44,40 +44,40 @@
                     </div>
                     <div class="col-sm-6">
                         <span class="label label-primary btn-block" style="text-align: center">Sinopsis</span>
-                        <div  id="contenedorInfo"  style="text-align: center; height:320px;"><%out.print(pelicula.sipnosis);%></div>
+                        <div  class="contenedorInfo"  style="text-align: center; height:320px;"><%out.print(pelicula.sipnosis);%></div>
                     </div>
                 </div>
                 <br>
                 <br>
                 <span class="label label-primary btn-block" style="text-align: center">Titulo Original</span>
-                <div id="contenedorInfo"   style="text-align: center"><%out.print(pelicula.tituloOriginal);%></div>
+                <div class="contenedorInfo"   style="text-align: center"><%out.print(pelicula.tituloOriginal);%></div>
                 <br>
                 
                 <span class="label label-primary btn-block" style="text-align: center">Genero</span>
-                <div id="contenedorInfo"  style="text-align: center"><%out.print(pelicula.genero);%></div>
+                <div class="contenedorInfo"  style="text-align: center"><%out.print(pelicula.genero);%></div>
                 <br>
                 
                 <span class="label label-primary btn-block" style="text-align: center">Director</span>
-                <div id="contenedorInfo"  style="text-align: center"><%out.print(pelicula.director);%></div>
+                <div class="contenedorInfo"  style="text-align: center"><%out.print(pelicula.director);%></div>
                 <br>
                 
                 <span class="label label-primary btn-block" style="text-align: center">Actores</span>
-                <div id="contenedorInfo"  style="text-align: center"><%out.print(pelicula.actores);%></div>
+                <div class="contenedorInfo"  style="text-align: center"><%out.print(pelicula.actores);%></div>
                 <br>
 
                 <span class="label label-primary btn-block" style="text-align: center">Nacionalidad</span>
-                <div id="contenedorInfo"  style="text-align: center"><%out.print(pelicula.nacionalidad);%></div>
+                <div class="contenedorInfo"  style="text-align: center"><%out.print(pelicula.nacionalidad);%></div>
                 <br>
                 
                  <div class="row">
                     <div class="col-sm-6">
                        <span class="label label-primary btn-block" style="text-align: center">Duracion</span>
-                <div id="contenedorInfo"  style="text-align: center"><%out.print(pelicula.duracion);%></div>
+                <div class="contenedorInfo"  style="text-align: center"><%out.print(pelicula.duracion);%></div>
                 <br>
                     </div>
                     <div class="col-sm-6">
                         <span class="label label-primary btn-block" style="text-align: center">Edad minima Recomendada</span>
-                <div id="contenedorInfo"  style="text-align: center"><%out.print(pelicula.edad);%></div>
+                <div class="contenedorInfo"  style="text-align: center"><%out.print(pelicula.edad);%></div>
                 <br>
                     </div>
                 </div>

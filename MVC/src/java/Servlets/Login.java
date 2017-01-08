@@ -38,7 +38,7 @@ public class Login extends HttpServlet {
             if(bd.dameRolUsuario(nombre).equals("admin"))
                 pagina = "/MVC/menuGestionPeliculas.jsp";
             else
-                pagina = "/MVC/Usuario/ModificarUsuario.jsp";
+                pagina = "/MVC/index.jsp";
             
             
         } 

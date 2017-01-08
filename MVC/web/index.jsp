@@ -39,7 +39,7 @@
         <div class="row">
             <div class="col-sm-2"></div>
             <div class="col-sm-8" >
-        <nav class="navbar navbar-inverse">
+        <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="#">CINES CARJAY</a>
@@ -58,7 +58,7 @@
         </div>
 
         
-        <br>
+        
         <div class="row">
             <div class="col-sm-2"></div>
             <div class="col-sm-8" id="contenedorCartelera" >
