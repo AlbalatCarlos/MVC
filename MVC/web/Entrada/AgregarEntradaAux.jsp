@@ -57,22 +57,27 @@
                         <%
                             
                             try {
-                                String resp = "",icono;
+                                String styleYOnClick = "",icono;
                                 out.println("<div class='row'>");
                                 for(int i=1;i<=(sala.filas * sala.columnas);i++)
                                 {
                                     if((i % sala.columnas) == 1)
                                         out.println("</div><br/><div class='row'>");
-                                    resp = "";
-                                    icono= "I";
+                                    
+                                    int columna = (i % sala.columnas)+1;
+                                    int fila = (i / sala.columnas)+1;
+                                    styleYOnClick = "style='width:50px;display:inline-block; cursor:pointer;' onclick='SeleccionarButaca("+fila+","+columna+")'";
+                                    icono= "O";
                                     for(ENTRADA entrada : entradas)
                                     {
-                                        int fila = ((i - 1) % sala.columnas);
-                                        int columna = (i-1 / sala.filas);
-                                        if(entrada.fila == fila && entrada.columna==columna){}
+                                        
+                                        if(entrada.fila == fila && entrada.columna==columna)
+                                        {
                                             icono= "X";
+                                            styleYOnClick = "style='width:50px;display:inline-block;'";
+                                        }
                                     }
-                                    out.println("<div style='width:50px;display:inline-block;' > "+icono + "</div>");
+                                    out.println("<div "+ styleYOnClick +" > "+icono + "</div>");
                                 }
                                 out.println("</div>");
 
@@ -86,6 +91,18 @@
             <br>
             <br>
 
+            <label class="control-label col-xs-3">Fila</label>
+            <div class="col-xs-9">
+                <input type="number"  class="form-control" id="fila" name="fila" placeholder="Fila">
+            </div>
+            <br>
+            <br>
+            <label class="control-label col-xs-3">Columna</label>
+            <div class="col-xs-9">
+                <input type="number"  class="form-control" id="columna" name="columna" placeholder="Columna">
+            </div>
+            <br>
+            <br>
             <label class="control-label col-xs-3">Hora:</label>
             <div class="col-xs-9">
                 <input type="number"  class="form-control" name="hora" placeholder="Hora">
@@ -115,3 +132,10 @@
 
     </body>
 </html>
+<script type="text/javascript">
+    function SeleccionarButaca( fila, columna)
+    {
+        $("#fila").val(fila);
+        $("#columna").val(columna);        
+    }
+</script>
