@@ -34,41 +34,53 @@
 
     </head>
     <body style="text-align:center;" style="border:solid black 2px;">
-         <%
+        <%
+
             String nombre = (String) session.getAttribute("nombre");
+            ModeloDatos bd = new ModeloDatos();
+            bd.abrirConexion();
+            String rol = bd.dameRolUsuario("nombre");
+            bd.cerrarConexion();
+
+
         %>
         <div><img src="Imagenes/cabeceraCine.jpg" width="768" height="200" alt="imagCabecera"></div>
-        
+
         <div class="row">
             <div class="col-sm-2"></div>
             <div class="col-sm-8" >
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#">CINES CARJAY</a>
-                </div>
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Cartelera</a></li>
-                    
-                </ul>
-                
-                <ul class="nav navbar-nav navbar-right">
-                    <%if (nombre!= null) {out.print("<li><a href='../MVC/ModificarUsuario'><span class='glyphicon glyphicon-user'></span> "+nombre+"</a></li>");
-                                            out.print("<li><a href='../MVC/CerrarSesion'><span class='glyphicon glyphicon-off'></span> Cerrar Sesion</a></li>");}
-                    else{
-                      
-                    out.print("<li><a href='../MVC/AltaUsuario'><span class='glyphicon glyphicon-user'></span> Sign Up</a></li>");
-                    out.print("<li><a href='../MVC/Login'><span class='glyphicon glyphicon-log-in'></span> Login</a></li>");}%>
-                   <!-- <li><a href="../MVC/AltaUsuario"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                    <li><a href="../MVC/Login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>-->
-                </ul>
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <a class="navbar-brand" href="#">CINES CARJAY</a>
+                        </div>
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="#">Cartelera</a></li>
+                                <% if (rol == "admin"){
+                                    out.print("<li class='active'><a href='#'>Cartelera</a></li>");
+                        }%>
+
+                        </ul>
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <%if (nombre != null) {
+                                    out.print("<li><a href='../MVC/ModificarUsuario'><span class='glyphicon glyphicon-user'></span> " + nombre + "</a></li>");
+                                    out.print("<li><a href='../MVC/CerrarSesion'><span class='glyphicon glyphicon-off'></span> Cerrar Sesion</a></li>");
+                                } else {
+
+                                    out.print("<li><a href='../MVC/AltaUsuario'><span class='glyphicon glyphicon-user'></span> Sign Up</a></li>");
+                            out.print("<li><a href='../MVC/Login'><span class='glyphicon glyphicon-log-in'></span> Login</a></li>");
+                        }%>
+                            <!-- <li><a href="../MVC/AltaUsuario"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                             <li><a href="../MVC/Login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>-->
+                        </ul>
+                    </div>
+                </nav>
             </div>
-        </nav>
-                </div>
         </div>
 
-        
-        
+
+
         <div class="row">
             <div class="col-sm-2"></div>
             <div class="col-sm-8" id="contenedorCartelera" >
