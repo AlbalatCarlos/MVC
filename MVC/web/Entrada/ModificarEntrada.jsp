@@ -4,6 +4,7 @@
     Author     : Jayro
 --%>
 
+<%@page import="Servlets.ModeloDatos.ENTRADA"%>
 <%@page import="Servlets.ModeloDatos.REPRODUCCION"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Servlets.ModeloDatos"%>
@@ -40,23 +41,23 @@
                 </div>
 
 
-                <form action="/MVC/ModificarReproduccion" method="POST">
-                    <select size="10" style="text-align: center" class="form-control"    name="idReproduccion">
+                 <form action="/MVC/ElegirButaca" method="POST">
+                    <select size="10" style="text-align: center" class="form-control"    name="referencia">
                         <%
                             try {
+                                String nombre = (String) session.getAttribute("nombre");
                                 ModeloDatos bd = new ModeloDatos();
                                 bd.abrirConexion();
                                 String resp = "";
                                 int id = 0;
-                                ArrayList<REPRODUCCION> reproducciones = bd.dameListaReproducciones();
+                                ArrayList<ENTRADA> entradas = bd.dameListaEntradasPorNombreUsuario(nombre);
                                 
-                                for(REPRODUCCION reproduccion : reproducciones)
+                                for(ENTRADA entrada : entradas)
                                 {
-                                    id = reproduccion.idReproduccion;
-                                    resp = reproduccion.nombrePelicula + " - " + 
-                                            reproduccion.nombreSala +" - " +
-                                            reproduccion.fecha.toString() + " - " 
-                                            + reproduccion.hora;
+                                    id = entrada.referencia;
+                                    resp = entrada.fila + " - " + 
+                                            entrada.columna +" - " +
+                                            entrada.referencia;
                                     out.println("<option class=\"btn btn-block\" value='" + id + "' > " + resp + "</option>");
 
                                 }
@@ -71,7 +72,7 @@
                     </select>
                     <br>
                     <br>
-                    <input class="button btn btn-success btn-block " type="submit" value="Modificar Reproducción"/>
+                    <input class="button btn btn-success btn-block " type="submit" value="Elegir Butaca"/>
                     <br>
                     <br>
                     <a href="/MVC/MenuGestionPeliculas" class="button btn btn-primary btn-block">Volver al menú</a>

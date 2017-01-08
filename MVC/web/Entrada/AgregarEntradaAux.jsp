@@ -9,7 +9,7 @@
 <%@page import="Servlets.ModeloDatos.SALA"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Servlets.ModeloDatos"%>
-<%@page import="Servlets.ModeloDatos.PELICULA"%>
+<%@page import="Servlets.ModeloDatos.*"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
@@ -28,11 +28,22 @@
         
         
         <%
-            
-            String idReproduccion = (String) session.getAttribute("idReproduccion");
-            
             ModeloDatos bd = new ModeloDatos();
             bd.abrirConexion();
+            
+            String referencia = (String) session.getAttribute("referencia");
+            ENTRADA entradaSession = null;
+            if(bd.IsNullOrWhiteSpace(referencia) == false)
+            {
+                entradaSession = bd.dameEntrada(referencia);
+            }
+            
+            String idReproduccion = (String) session.getAttribute("idReproduccion");
+            if(bd.IsNullOrWhiteSpace(idReproduccion) && (entradaSession != null))
+            {
+                idReproduccion = ""+entradaSession.idReproduccion;
+            }
+            
             REPRODUCCION reproduccion =  bd.dameReproduccion(idReproduccion);
             SALA sala =  bd.dameSala(reproduccion.nombreSala);
             ArrayList<ENTRADA> entradas = bd.dameListaEntradasPorIdReproduccion(idReproduccion);
@@ -92,21 +103,21 @@
             <div class="form-group row">
                 <label class="control-label col-xs-3">Fila</label>
                 <div class="col-xs-9">
-                    <input type="number"  class="form-control" id="fila" name="fila" placeholder="Fila">
+                    <input type="number"  class="form-control" id="fila" name="fila" value="<%out.print(entradaSession.fila);%>" placeholder="Fila">
                 </div>
             </div>
             
             <div class="form-group row">
                 <label class="control-label col-xs-3">Columna</label>
                 <div class="col-xs-9">
-                    <input type="number"  class="form-control" id="columna" name="columna" placeholder="Columna">
+                    <input type="number"  class="form-control" id="columna" name="columna"  value="<%out.print(entradaSession.columna);%>" placeholder="Columna">
                 </div>
             </div>
             
             <div class="form-group row">
                 <label class="control-label col-xs-3">Referencia</label>
                 <div class="col-xs-9">
-                    <input type="number"  class="form-control" id="referencia" name="referencia" placeholder="Referencia">
+                    <input type="number"  class="form-control" id="referencia" name="referencia" value="<%out.print(referencia);%>" placeholder="Referencia">
                 </div>
             </div>
             

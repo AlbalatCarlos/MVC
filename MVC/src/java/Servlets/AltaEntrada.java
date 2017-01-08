@@ -63,12 +63,12 @@ public class AltaEntrada extends HttpServlet {
         else if (bd.existeEntrada(referencia)) 
         {
             bd.actualizarEntrada(idReproduccion,nombreSession,fila,columna,referencia);
-            session.setAttribute("idReproduccion", idReproduccion); 
+            session.setAttribute("referencia", referencia); 
         } 
         else {
             
             bd.insertarEntrada(idReproduccion,nombreSession,fila,columna,referencia);
-            session.setAttribute("idReproduccion", idReproduccion);
+            session.setAttribute("referencia", referencia);
         }
         
         res.sendRedirect(res.encodeRedirectURL(pagina));

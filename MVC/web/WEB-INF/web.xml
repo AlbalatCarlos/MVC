@@ -76,6 +76,14 @@
         <servlet-name>AltaEntrada</servlet-name>
         <servlet-class>Servlets.AltaEntrada</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ModificarEntrada</servlet-name>
+        <servlet-class>Servlets.ModificarEntrada</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BorrarEntrada</servlet-name>
+        <servlet-class>Servlets.BorrarEntrada</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PruebaSession</servlet-name>
         <url-pattern>/PruebaSession</url-pattern>
@@ -151,6 +159,14 @@
     <servlet-mapping>
         <servlet-name>AltaEntrada</servlet-name>
         <url-pattern>/AltaEntrada</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ModificarEntrada</servlet-name>
+        <url-pattern>/ModificarEntrada</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BorrarEntrada</servlet-name>
+        <url-pattern>/BorrarEntrada</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

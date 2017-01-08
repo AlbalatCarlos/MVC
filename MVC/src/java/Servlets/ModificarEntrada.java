@@ -16,28 +16,17 @@ import javax.servlet.http.HttpSession;
  *
  * @author CARLOS
  */
-public class ElegirButaca extends HttpServlet {
+public class ModificarEntrada extends HttpServlet {
 
     public void service(HttpServletRequest req,
             HttpServletResponse res) throws ServletException, IOException {
         
-        ModeloDatos bd = new ModeloDatos();
-        
         HttpSession session = req.getSession();
         
-        String idReproduccion = (String) req.getParameter("idReproduccion");
-        String referencia = (String) req.getParameter("idReproduccion");
+        String referencia = (String) req.getParameter("referencia");
         
-        if(bd.IsNullOrWhiteSpace(referencia) == false)
-        {
-            session.setAttribute("referencia", referencia);
-        }
+        session.setAttribute("referencia", referencia);
         
-        if(bd.IsNullOrWhiteSpace(idReproduccion) == false)
-        {
-            session.setAttribute("idReproduccion", idReproduccion);
-        }
-        
-        res.sendRedirect(res.encodeRedirectURL("/MVC/Entrada/AgregarEntradaAux.jsp"));
+        res.sendRedirect(res.encodeRedirectURL("/MVC/Entrada/ModificarEntradaAux.jsp"));
     }
 }

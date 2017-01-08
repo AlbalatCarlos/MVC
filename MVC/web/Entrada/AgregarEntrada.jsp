@@ -71,7 +71,7 @@
                     </select>
                     <br>
                     <br>
-                    <input class="button btn btn-success btn-block " type="submit" value="ElegirButaca"/>
+                    <input class="button btn btn-success btn-block " type="submit" value="Elegir Butaca"/>
                     <br>
                     <br>
                     <a href="/MVC/MenuGestionPeliculas" class="button btn btn-primary btn-block">Volver al menú</a>

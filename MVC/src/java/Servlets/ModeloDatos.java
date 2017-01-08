@@ -326,6 +326,29 @@ public class ModeloDatos {
         }
     }
     
+    public ENTRADA dameEntrada(String referencia)
+    {
+        ENTRADA entrada = new ENTRADA();
+        try {
+            set = con.createStatement();
+            rs = set.executeQuery("SELECT * FROM ENTRADA WHERE referencia="+referencia);
+            while (rs.next()) {
+                entrada.columna =  rs.getInt("columna");
+                entrada.fila = rs.getInt("fila");
+                entrada.idReproduccion = rs.getInt("idReproduccion");
+                entrada.referencia = rs.getInt("referencia");
+                entrada.nombreUsuario = rs.getString("nombreUsuario");
+            }
+            
+            rs.close();
+            set.close();
+        } catch (Exception e) {
+            System.out.println("No lee de la tabla ENTRADA \nException: "+e);
+            return new ENTRADA();
+        }
+        return entrada;
+    }
+    
     
     public boolean existeEntrada(String referencia) {
 
@@ -403,6 +426,45 @@ public class ModeloDatos {
         try {
             set = con.createStatement();
             rs = set.executeQuery("SELECT * FROM ENTRADA WHERE idReproduccion="+idReproduccion);
+
+            ArrayList<ENTRADA> entradas = new ArrayList<ENTRADA>();
+            
+
+            //Guardo las entradas en un ArrayList
+            while (rs.next()) {
+                try{
+                    ENTRADA entrada = new ENTRADA();
+                    entrada.idReproduccion =  rs.getInt("idReproduccion");
+
+                    entrada.nombreUsuario = rs.getString("nombreUsuario");
+
+                    entrada.fila = rs.getInt("fila");
+
+                    entrada.columna = rs.getInt("columna");
+
+                    entrada.referencia = rs.getInt("referencia");
+
+                    entradas.add(entrada);
+                }
+                catch(Exception e){
+                    System.out.println("Alguna de las entradas tiene datos no validos: "+e);
+                    return new ArrayList<ENTRADA>();
+                }
+            }
+            rs.close();
+            set.close();
+            
+            return entradas;
+        } catch (Exception e) {
+            System.out.println("Fallo al listar entradas "+ e);
+            return new ArrayList<ENTRADA>();
+        }
+    }
+    
+    public ArrayList<ENTRADA> dameListaEntradasPorNombreUsuario (String nombre) {
+        try {
+            set = con.createStatement();
+            rs = set.executeQuery("SELECT * FROM ENTRADA WHERE nombreUsuario='"+nombre+"'");
 
             ArrayList<ENTRADA> entradas = new ArrayList<ENTRADA>();
             
