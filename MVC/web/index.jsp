@@ -39,7 +39,7 @@
             String nombre = (String) session.getAttribute("nombre");
             ModeloDatos bd = new ModeloDatos();
             bd.abrirConexion();
-            String rol = bd.dameRolUsuario("nombre");
+            String rol = bd.dameRolUsuario(nombre);
             bd.cerrarConexion();
 
 
@@ -56,24 +56,23 @@
                         </div>
                         <ul class="nav navbar-nav">
                             <li class="active"><a href="#">Cartelera</a></li>
-                                <% if (rol == "admin"){
-                                    out.print("<li class='active'><a href='#'>Cartelera</a></li>");
-                        }%>
+                                
 
                         </ul>
 
                         <ul class="nav navbar-nav navbar-right">
                             <%if (nombre != null) {
-                                    out.print("<li><a href='../MVC/ModificarUsuario'><span class='glyphicon glyphicon-user'></span> " + nombre + "</a></li>");
+                                 if (rol.equals("admin")){
+                                out.print("<li><a href='/MVC/menuGestionPeliculas.jsp'><span class='glyphicon glyphicon-cog'></span> Gestionar Sitio</a></li>");
+                        }
+                                    out.print("<li><a href='../MVC/ModificarUsuario'><span class='glyphicon glyphicon-user'></span> " + nombre+"</a></li>");
                                     out.print("<li><a href='../MVC/CerrarSesion'><span class='glyphicon glyphicon-off'></span> Cerrar Sesion</a></li>");
                                 } else {
 
                                     out.print("<li><a href='../MVC/AltaUsuario'><span class='glyphicon glyphicon-user'></span> Sign Up</a></li>");
                             out.print("<li><a href='../MVC/Login'><span class='glyphicon glyphicon-log-in'></span> Login</a></li>");
                         }%>
-                            <!-- <li><a href="../MVC/AltaUsuario"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                             <li><a href="../MVC/Login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>-->
-                        </ul>
+                                                    </ul>
                     </div>
                 </nav>
             </div>
@@ -91,7 +90,7 @@
                 <%
 
                     try {
-                        ModeloDatos bd = new ModeloDatos();
+                       // ModeloDatos bd = new ModeloDatos();
                         bd.abrirConexion();
                         String resp = "";
                         int id = 0;
