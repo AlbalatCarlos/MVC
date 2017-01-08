@@ -58,7 +58,7 @@
                     for (PELICULA pelicula : peliculas) {
                        
                         out.print("<form  class='col-sm-3 form-group' style='height:200px;'  action=\"/MVC/InfoPelicula\" Method=\"POST\">");
-                         out.print("<div id='contenedorPelicula'>");
+                         out.print("<div class='contenedorPelicula'>");
                         out.println("</br>");
                         out.println("</br>");
                         out.println("<tr>" + "<td>" + pelicula.nombre + "</td>" + "</tr>");

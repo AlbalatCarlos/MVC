@@ -21,3 +21,28 @@ footer {
 	background:#16a085;
 	color:#fff;
 }
+
+.bottomaligned {
+    position:absolute; 
+    bottom:0;  
+    margin-bottom:4px; 
+    left: 20px;
+}
+
+.contenedorPelicula {
+    border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border: 2px solid #337AB7;
+    height: 200px;
+}
+
+#contenedorCartelera {
+    border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border: 2px solid #337AB7;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(51,122,183,1);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(51,122,183,1);
+    box-shadow: 10px 10px 5px 0px rgba(51,122,183,1);
+}
