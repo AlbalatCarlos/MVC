@@ -27,10 +27,7 @@
     </head>
     <body style="text-align:center;" style="border:solid black 2px;">
         <div><img src="Imagenes/cabeceraCine.jpg" width="768" height="200" alt="imagCabecera"></div>
-        <div id="barraSeparadora">
-            <div style="display:inline-block"><label>CARTELERA</label></div>
-            <div style="display:inline-block"><img width="100" height="105" src="Imagenes/barra2.png"  style="left:20px"></div>
-        </div>
+        <div id="barraSeparadora">CARTELERA<img width="100" height="105" align="top" style="position:absolute" style="left:20px"></div>
         <br>
         <div id="contenedoraux">
 
