@@ -296,6 +296,70 @@ public class ModeloDatos {
         return sala;
     }
     
+    
+    
+    
+    public void insertarEntrada(String idReproduccion, String nombreUsuario, String fila, String columna, String referencia ) {
+        try {
+            set = con.createStatement();
+            set.executeUpdate("INSERT INTO ENTRADA "
+                    + " (IDREPRODUCCION,NOMBREUSUARIO,FILA,COLUMNA,REFERENCIA) VALUES"
+                    + " (" + idReproduccion + " , '" + nombreUsuario + "' , " + fila + ", " + columna + "," + referencia + ")");
+            rs.close();
+            set.close();
+        } catch (Exception e) {
+            System.out.println("No inserta en la tabla " + e);
+        }
+    }
+    
+    public void actualizarEntrada(String idReproduccion, String nombreUsuario,String fila, String columna, String referencia) {
+        try {
+            String strSQl = "fila="+fila+",columna=" + columna;
+            set = con.createStatement();
+            set.executeUpdate(
+                    "UPDATE ENTRADA SET " + strSQl + " WHERE referencia "
+                    + " = "+ referencia);
+            rs.close();
+            set.close();
+        } catch (Exception e) {
+            System.out.println("No modifica la tabla Reproduccion. \nException: "+ e);
+        }
+    }
+    
+    
+    public boolean existeEntrada(String referencia) {
+
+        boolean existe = false;
+        String num;
+        try {
+            set = con.createStatement();
+            rs = set.executeQuery("SELECT * FROM ENTRADA");
+            while (rs.next()) {
+                num = rs.getString("referencia");
+                if (num.equals(referencia)) {
+                    existe = true;
+                }
+            }
+            rs.close();
+            set.close();
+        } catch (Exception e) {
+            System.out.println("No lee de la tabla ENTRADA \nException: "+e);
+        }
+        return (existe);
+    }
+    
+    public void borrarEntrada(String referencia) {
+        try {
+            set = con.createStatement();
+            set.executeUpdate("DELETE FROM ENTRADA WHERE referencia="+ referencia );
+            rs.close();
+            set.close();
+        } catch (Exception e) {
+            System.out.println("No borra en la tabla " + e);
+        }
+    }
+    
+    
     public ArrayList<ENTRADA> dameListaEntradas() {
         try {
             set = con.createStatement();

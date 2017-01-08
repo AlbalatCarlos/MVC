@@ -72,6 +72,10 @@
         <servlet-name>CerrarSesion</servlet-name>
         <servlet-class>Servlets.CerrarSesion</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AltaEntrada</servlet-name>
+        <servlet-class>Servlets.AltaEntrada</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PruebaSession</servlet-name>
         <url-pattern>/PruebaSession</url-pattern>
@@ -143,6 +147,10 @@
     <servlet-mapping>
         <servlet-name>CerrarSesion</servlet-name>
         <url-pattern>/CerrarSesion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AltaEntrada</servlet-name>
+        <url-pattern>/AltaEntrada</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

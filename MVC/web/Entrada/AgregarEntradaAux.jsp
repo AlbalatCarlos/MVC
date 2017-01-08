@@ -50,7 +50,7 @@
 
 
 
-        <form class="form-group col-xs-6 col-xs-offset-3" action="/MVC/AltaReproduccion" method="POST">
+        <form class="form-group col-xs-6 col-xs-offset-3" action="/MVC/AltaEntrada" method="POST">
 
             <div class="col-xs-9 col-xs-offset-3">
                 <div  style="text-align: center" class="butacas">
@@ -88,42 +88,38 @@
                         %>
                     </div>
             </div>
-            <br>
-            <br>
-
-            <label class="control-label col-xs-3">Fila</label>
-            <div class="col-xs-9">
-                <input type="number"  class="form-control" id="fila" name="fila" placeholder="Fila">
+            <br/>
+            <div class="form-group row">
+                <label class="control-label col-xs-3">Fila</label>
+                <div class="col-xs-9">
+                    <input type="number"  class="form-control" id="fila" name="fila" placeholder="Fila">
+                </div>
             </div>
-            <br>
-            <br>
-            <label class="control-label col-xs-3">Columna</label>
-            <div class="col-xs-9">
-                <input type="number"  class="form-control" id="columna" name="columna" placeholder="Columna">
+            
+            <div class="form-group row">
+                <label class="control-label col-xs-3">Columna</label>
+                <div class="col-xs-9">
+                    <input type="number"  class="form-control" id="columna" name="columna" placeholder="Columna">
+                </div>
             </div>
-            <br>
-            <br>
-            <label class="control-label col-xs-3">Hora:</label>
-            <div class="col-xs-9">
-                <input type="number"  class="form-control" name="hora" placeholder="Hora">
+            
+            <div class="form-group row">
+                <label class="control-label col-xs-3">Referencia</label>
+                <div class="col-xs-9">
+                    <input type="number"  class="form-control" id="referencia" name="referencia" placeholder="Referencia">
+                </div>
             </div>
-            <br>
-            <br>
-
-   
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-
+            
+            <input style="display:none" type="number"  class="form-control" name="idReproduccion" value="<%out.print(idReproduccion);%>">
+            
+            
+            <input style="display:none;" type="text"  class="form-control" name="nombreUsuario" value="<%out.print(nombre);%>">
+          
             <div class="row">
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2"><a href="/MVC/" class="button btn btn-primary btn-md">Volver a menu </a></div>
-                <div class="col-sm-4"><input class="button btn btn-success btn-block" type="submit" value="Alta Entrada"/></div>
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2"></div>
+                
+                <div class="col-xs-4 col-xs-offset-1"><a href="/MVC/" class="button btn btn-primary btn-md">Volver a menu </a></div>
+                <div class="col-sm-5"><input class="button btn btn-success btn-block" type="submit" value="Alta Entrada"/></div>
+                
             </div>
 
 
@@ -133,8 +129,6 @@
     </body>
 </html>
 <script type="text/javascript">
-    
-    
     
     function SeleccionarButaca( fila, columna,butaca)
     {
