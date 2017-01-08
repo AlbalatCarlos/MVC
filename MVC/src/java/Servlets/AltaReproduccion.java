@@ -48,16 +48,16 @@ public class AltaReproduccion extends HttpServlet {
         hora= Double.parseDouble(req.getParameter("hora"));
         }
         
-         int idReproduccion = -1;
+         String idReproduccion= "";
         
         if(((String)req.getParameter("idReproduccion")).length()>0){
-        idReproduccion= Integer.parseInt(req.getParameter("idReproduccion"));
+        idReproduccion= req.getParameter("idReproduccion");
         }
         
 
         HttpSession session = req.getSession();
         session.removeAttribute("error");
-        String pagina = "/MVC/Sala/ModificarReproduccionAux.jsp";
+        String pagina = "/MVC/Reproduccion/ModificarReproduccionAux.jsp";
         String nombreSession = (String)session.getAttribute("nombre");
         
         String rol = bd.dameRolUsuario(nombreSession);
@@ -92,11 +92,7 @@ public class AltaReproduccion extends HttpServlet {
             }
         }
         
-        
-        bd.insertarReproduccion(nombrePelicula, nombreSala, fecha, hora, idReproduccion);
-
-        res.sendRedirect(res.encodeRedirectURL("/MVC/altaReproduccion.jsp"));
-
+        res.sendRedirect(res.encodeRedirectURL(pagina));
     }
 
    public void destroy() {

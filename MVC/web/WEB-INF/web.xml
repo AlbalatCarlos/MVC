@@ -48,6 +48,14 @@
         <servlet-name>BorrarSala</servlet-name>
         <servlet-class>Servlets.BorrarSala</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ModificarReproduccion</servlet-name>
+        <servlet-class>Servlets.ModificarReproduccion</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BorrarReproduccion</servlet-name>
+        <servlet-class>Servlets.BorrarReproduccion</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PruebaSession</servlet-name>
         <url-pattern>/PruebaSession</url-pattern>
@@ -95,6 +103,14 @@
     <servlet-mapping>
         <servlet-name>BorrarSala</servlet-name>
         <url-pattern>/BorrarSala</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ModificarReproduccion</servlet-name>
+        <url-pattern>/ModificarReproduccion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BorrarReproduccion</servlet-name>
+        <url-pattern>/BorrarReproduccion</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

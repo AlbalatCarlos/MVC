@@ -20,11 +20,11 @@
     <body>
         <%
             
-            String nombreReproduccion = (String) session.getAttribute("nombreReproduccion");
+            String idReproduccion = (String) session.getAttribute("idReproduccion");
             
             ModeloDatos bd = new ModeloDatos();
             bd.abrirConexion();
-            REPRODUCCION reproduccion =  bd.dameReproduccion(nombreReproduccion);
+            REPRODUCCION reproduccion =  bd.dameReproduccion(idReproduccion);
             String nombre= (String) session.getAttribute("nombre");
             
             

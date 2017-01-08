@@ -472,9 +472,8 @@ public class ModeloDatos {
     
     
     
-    public void insertarReproduccion(String nombrePelicula, String nombreSala, String fecha, double hora, int idReproduccion ) {
+    public void insertarReproduccion(String nombrePelicula, String nombreSala, String fecha, double hora, String idReproduccion ) {
         try {
-            System.out.println("AQUIII LA REPRODUCCION 2  " + nombrePelicula + idReproduccion);
             set = con.createStatement();
             set.executeUpdate("INSERT INTO REPRODUCCION "
                     + " (NOMBREPELICULA , NOMBRESALA, FECHA, HORA, IDREPRODUCCION) VALUES"
@@ -486,26 +485,26 @@ public class ModeloDatos {
         }
     }
     
-    public void actualizarReproduccion(String nombrePelicula, String nombreSala,String fecha, double horas, int idReproduccion) {
+    public void actualizarReproduccion(String nombrePelicula, String nombreSala,String fecha, double horas, String idReproduccion) {
         try {
-            String strSQl = "fecha='" + fecha + "',horas=" + horas+",idReproduccion="+idReproduccion+",nombrePelicula='" + nombrePelicula + "',nombreSala='" + nombreSala + "'";
+            String strSQl = "fecha='" + fecha + "',hora=" + horas+",idReproduccion="+idReproduccion+",nombrePelicula='" + nombrePelicula + "',nombreSala='" + nombreSala + "'";
             set = con.createStatement();
             set.executeUpdate(
-                    "UPDATE SALA SET " + strSQl + " WHERE idReproduccion "
+                    "UPDATE REPRODUCCION SET " + strSQl + " WHERE idReproduccion "
                     + " = "+ idReproduccion);
             rs.close();
             set.close();
         } catch (Exception e) {
-            System.out.println("No modifica la tabla Sala. \nException: "+ e);
+            System.out.println("No modifica la tabla Reproduccion. \nException: "+ e);
         }
     }
     
-    public REPRODUCCION dameReproduccion(String nombreReproduccion)
+    public REPRODUCCION dameReproduccion(String idReproduccion)
     {
         REPRODUCCION reproduccion = new REPRODUCCION();
         try {
             set = con.createStatement();
-            rs = set.executeQuery("SELECT * FROM REPRODUCCION WHERE nombre='"+nombreReproduccion+"'");
+            rs = set.executeQuery("SELECT * FROM REPRODUCCION WHERE idReproduccion="+idReproduccion);
             while (rs.next()) {
                 reproduccion.fecha =  rs.getDate("fecha");
                 reproduccion.hora = rs.getDouble("hora");
@@ -517,7 +516,7 @@ public class ModeloDatos {
             rs.close();
             set.close();
         } catch (Exception e) {
-            System.out.println("No lee el rol de la tabla REPRODUCCION \nException: "+e);
+            System.out.println("No lee de la tabla REPRODUCCION \nException: "+e);
             return new REPRODUCCION();
         }
         return reproduccion;
@@ -526,16 +525,16 @@ public class ModeloDatos {
     public ArrayList<REPRODUCCION> dameListaReproducciones() {
         try {
             set = con.createStatement();
-            rs = set.executeQuery("SELECT * FROM SALA");
+            rs = set.executeQuery("SELECT * FROM REPRODUCCION");
 
             ArrayList<REPRODUCCION> reproducciones = new ArrayList<REPRODUCCION>();
             
 
-            //Guardo las salas en un ArrayList
+            //Guardo las reproducciones en un ArrayList
             while (rs.next()) {
                 try{
                     REPRODUCCION reproduccion = new REPRODUCCION();
-                    reproduccion.fecha =  rs.getDate("fecha");
+                    reproduccion.fecha = rs.getDate("fecha");
                     reproduccion.hora = rs.getDouble("hora");
                     reproduccion.idReproduccion = rs.getInt("idReproduccion");
                     reproduccion.nombrePelicula = rs.getString("nombrePelicula");
@@ -558,16 +557,16 @@ public class ModeloDatos {
         }
     }
     
-    public boolean existeReproduccion(int idReproduccion) {
+    public boolean existeReproduccion(String idReproduccion) {
 
         boolean existe = false;
-        int num;
+        String num;
         try {
             set = con.createStatement();
             rs = set.executeQuery("SELECT * FROM REPRODUCCION");
             while (rs.next()) {
-                num = rs.getInt("idReproduccion");
-                if (num == idReproduccion) {
+                num = rs.getString("idReproduccion");
+                if (num.equals(idReproduccion)) {
                     existe = true;
                 }
             }
@@ -577,6 +576,17 @@ public class ModeloDatos {
             System.out.println("No lee de la tabla REPRODUCCION \nException: "+e);
         }
         return (existe);
+    }
+    
+    public void borrarReproduccion(String idReproduccion) {
+        try {
+            set = con.createStatement();
+            set.executeUpdate("DELETE FROM REPRODUCCION WHERE idReproduccion="+ idReproduccion );
+            rs.close();
+            set.close();
+        } catch (Exception e) {
+            System.out.println("No borra en la tabla " + e);
+        }
     }
     
 
@@ -617,12 +627,6 @@ public class ModeloDatos {
     }
     
     
-    
-    
-    
-    
-    
-
 }
     
 
