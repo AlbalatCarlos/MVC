@@ -41,7 +41,7 @@
 
 
                 <form action="/MVC/ModificarPelicula" method="POST">
-                    <select  size="10" style="text-align: center" class="form-control  "    name="nombrePelicula">
+                    <select required size="10" style="text-align: center" class="form-control  "    name="nombrePelicula">
                         <%
                             try {
                                 String resp = "";

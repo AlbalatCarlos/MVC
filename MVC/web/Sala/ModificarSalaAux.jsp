@@ -38,41 +38,31 @@
 
 
         <form class="form-group col-xs-6 col-xs-offset-3" action="/MVC/AltaSala" method="POST">
-
-            <label for="nombre" class="control-label col-xs-3">Nombre Sala:</label>
-            <div class="col-xs-9">
-                <input required value="<%out.print(sala.nombre);%>" type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre Sala">
+            
+            <div class="row form-group">
+                <label for="nombre" class="control-label col-xs-3">Nombre Sala:</label>
+                <div class="col-xs-9">
+                    <input required value="<%out.print(sala.nombre);%>" type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre Sala">
+                </div>
             </div>
-            <br>
-            <br>
-
-            <label class="control-label col-xs-3">Filas:</label>
-            <div class="col-xs-9">
-                <input type="number" value="<%out.print(sala.filas);%>" class="form-control" id="filas" name="filas" placeholder="Filas">
+            
+            <div class="row form-group">
+                <label class="control-label col-xs-3">Filas:</label>
+                <div class="col-xs-9">
+                    <input type="number" value="<%out.print(sala.filas);%>" class="form-control" id="filas" name="filas" placeholder="Filas">
+                </div>
             </div>
-            <br>
-            <br>
-
-
-            <label class="control-label col-xs-3">Columnas:</label>
-            <div class="col-xs-9">
-                <input type="number" value="<%out.print(sala.columnas);%>" class="form-control" name="columnas" placeholder="Columnas">
+            
+            <div class="row form-group">
+                <label class="control-label col-xs-3">Columnas:</label>
+                <div class="col-xs-9">
+                    <input type="number" value="<%out.print(sala.columnas);%>" class="form-control" name="columnas" placeholder="Columnas">
+                </div>
             </div>
-            <br>
-            <br>
-
-
-            <br>
-            <br>
-            <br>
-            <br>
-
+            
             <div class="row">
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2"><a href="/MVC/MenuGestionPeliculas" class="button btn btn-primary btn-md">Volver a menú </a></div>
-                <div class="col-sm-4"><input class="button btn btn-success btn-block" type="submit" value="Modificar Sala"/></div>
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2"></div>
+                <div class="col-xs-4"><a href="/MVC/MenuGestionPeliculas" class="button btn btn-primary btn-md">Volver a menú </a></div>
+                <div class="col-xs-4 col-xs-offset-2"><input class="button btn btn-success btn-block" type="submit" value="Modificar Sala"/></div>
             </div>
 
 

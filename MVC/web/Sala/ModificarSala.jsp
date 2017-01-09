@@ -42,7 +42,7 @@
 
 
                 <form action="/MVC/ModificarSala" method="POST">
-                    <select  size="10" style="text-align: center" class="form-control  "    name="nombreSala">
+                    <select required size="10" style="text-align: center" class="form-control"    name="nombreSala">
                         <%
                             try {
                                 String resp = "";

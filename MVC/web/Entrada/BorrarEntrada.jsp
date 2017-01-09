@@ -44,7 +44,7 @@
 
 
                 <form class="form-group" action="/MVC/BorrarEntrada" method="POST">
-                    <select  size="10" style="text-align: center" class="form-control"    name="referencia">
+                    <select required size="10" style="text-align: center" class="form-control"    name="referencia">
                         <%
                             try {
                                     String nombre = (String) session.getAttribute("nombre");
@@ -71,7 +71,7 @@
                     </select>
                     <br>
                     <br>
-                    <input class="button btn btn-danger btn-block" onclick="pulsar()"  type="submit" value="Borrar Entrada"/>
+                    <input class="button btn btn-danger btn-block"  type="submit" value="Borrar Entrada"/>
                     
                     <br>
                     <br>

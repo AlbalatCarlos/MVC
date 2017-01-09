@@ -101,43 +101,54 @@
             <div class="col-sm-2"></div>
             <div class="col-sm-2"></div>
         </div>
-        <div class="row">
-            <form class="form-group col-xs-offset-3 col-xs-6">
-                <div class="form-group row">
-                    <label class="control-label col-xs-3">Comentario</label>
-                    <div class="col-xs-9">
-                        <input required type="text"  class="form-control" id="comentario" name="comentario" value="" placeholder="Comentario">
-                    </div>
-                </div>
                 <br/>
-                <div class="form-group row">
-                    <div class="col-xs-3">
-                        <a onclick="AltaComentario()" class="button btn btn-primary btn-md">Comentar Pelicula</a>
+                <br/>
+                <br/>
+                <br/>
+        <div id="comentarios" style="<%if(bd.IsNullOrWhiteSpace(nombre)){out.print("display:none");}%>">
+            <div class="row">
+                <div class="panel panel-default col-xs-offset-3 col-xs-6">
+                    <div class="panel-heading"><h3>Lista de comentarios</h3></div>
+                    <div class="panel-body">
+                        <table class="table table-condensed">
+                        <%
+
+                            try{
+                                for(COMENTARIO comentario : comentarios)
+                                {
+                                    out.println("<tr><td>"+comentario.nombreUsuario+"</td><td>"+comentario.comentario+"</td></tr>");
+                                }
+                            }
+                            catch(Exception e)
+                            {}
+
+                        %>
+                        </table>
                     </div>
-                    
                 </div>
-            </form>
-        </div>
-        <div class="row">
-            <div id="listaComentarios" class="col-xs-offset-3 col-xs-6">
-                <table class="table table-condensed">
-                <%
+            </div>
+
+            <div class="row">
+                <form class="form-group col-xs-offset-2 col-xs-8">
+                    <div class="form-group row">
+                        <label class="control-label col-xs-3" style="text-align: right">Comentar</label>
+                        <div class="col-xs-6">
+                            <input required type="text"  class="form-control" id="comentario" name="comentario" value="" placeholder="Comentario">
+                        </div>
+                        <div class="col-xs-3">
+                            <a onclick="AltaComentario()" class="button btn btn-primary btn-md">Comentar Pelicula</a>
+                        </div>
+                    </div>
+                    <br/>
                     
-                    try{
-                        for(COMENTARIO comentario : comentarios)
-                        {
-                            out.println("<tr><td>"+comentario.nombreUsuario+"</td><td>"+comentario.comentario+"</td></tr>");
-                        }
-                    }
-                    catch(Exception e)
-                    {}
-                
-                %>
-                </table>
+                        
+
+                    
+                </form>
             </div>
         </div>
-        <br/>
-        <br/>
+        
+        
         
 
 

@@ -27,18 +27,22 @@ public class ElegirButaca extends HttpServlet {
         
         String idReproduccion = (String) req.getParameter("idReproduccion");
         String referencia = (String) req.getParameter("referencia");
+        String pagina = "";
         
         if(bd.IsNullOrWhiteSpace(idReproduccion) == false)
         {
             session.setAttribute("idReproduccion", idReproduccion);
+            pagina="/MVC/Entrada/AgregarEntradaAux.jsp";
         }
         
         if(bd.IsNullOrWhiteSpace(referencia) == false)
         {
+            int id = bd.dameEntrada(referencia).idReproduccion;
             session.setAttribute("referencia", referencia);
-            session.setAttribute("idReproduccion", bd.dameEntrada(referencia).idReproduccion);
+            session.setAttribute("idReproduccion", ""+id+"");
+            pagina = "/MVC/Entrada/ModificarEntradaAux.jsp" ;
         }
         bd.cerrarConexion();
-        res.sendRedirect(res.encodeRedirectURL("/MVC/Entrada/AgregarEntradaAux.jsp"));
+        res.sendRedirect(res.encodeRedirectURL(pagina));
     }
 }

@@ -26,23 +26,7 @@
              session.removeAttribute("nombre");
         %>
         
-       <!-- <form action="/MVC/Login" method="POST">
-            <div <%if(error == null){out.print("style=display:none");}%>>
-                <label for="nombre">Fallo de acceso: <%out.print(error);%></label>
-            </div>
-            <br/>
-            <div class="form-group">
-                <label for="nombreCoche">Nombre</label>
-                <br/> 
-                <input type="text" name="nombre" value=""/>
-            </div>
-            <div class="form-group">
-                <label for="nombreCoche">Password</label>
-                <br/> 
-                <input type="text" name="pass" value=""/>
-            </div>
-             <input class="button" type="submit" value="Acceder a la Web"/>
-         </form> -->
+       
        <div class="row">
        <div class="col-xs-12">
             <form action="/MVC/Login" method="POST">
@@ -54,10 +38,10 @@
 	<div class="login col-xs-6 col-xs-offset-3">
             <br/>
             <img src="../Imagenes/login-avatar.png" align="center" class="img-rounded" alt="Drive" width="100" height="100">
-		<h4>Login to Web App</h4>
+		<h4>Acceso a Cines Carjay</h4>
 			<hr>
         		
-    				<input type="user" class="form-control" name="nombre"  placeholder="Enter User">
+    				<input type="user" class="form-control" name="nombre"  placeholder="Nombre Usuario">
     				<input type="password" class="form-control password" name="pass" id="password-input" placeholder="Password">
 					<label class="checkbox-inline">
 						<br/>

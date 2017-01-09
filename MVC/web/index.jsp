@@ -69,8 +69,8 @@
                                     out.print("<li><a href='../MVC/CerrarSesion'><span class='glyphicon glyphicon-off'></span> Cerrar Sesion</a></li>");
                                 } else {
 
-                                    out.print("<li><a href='../MVC/AltaUsuario'><span class='glyphicon glyphicon-user'></span> Sign Up</a></li>");
-                            out.print("<li><a href='../MVC/Login'><span class='glyphicon glyphicon-log-in'></span> Login</a></li>");
+                                    out.print("<li><a href='../MVC/AltaUsuario'><span class='glyphicon glyphicon-user'></span> Registro</a></li>");
+                            out.print("<li><a href='../MVC/Login'><span class='glyphicon glyphicon-log-in'></span> Acceso</a></li>");
                         }%>
                                                     </ul>
                     </div>
@@ -102,15 +102,15 @@
 
                             out.print("<form  class='col-sm-3 form-group' style='height:200px;'  action=\"/MVC/InfoPelicula\" Method=\"POST\">");
                             out.print("<div class='contenedorPelicula'>");
-                            out.println("</br>");
-                            out.println("</br>");
-                            out.println("<tr>" + "<td>" + pelicula.nombre + "</td>" + "</tr>");
-                            out.println("</br>");
+                            out.println("<br/>");
+                            out.println("<br/>");
+                            out.println("<p>" + "" + pelicula.nombre +"</p>");
+                            out.println("<p>");
                             out.println("Director:" + pelicula.director);
-                            out.println("</br>");
+                            out.println("</p><p>");
                             out.println("Edad:" + pelicula.edad);
-                            out.println("</br>");
-                            out.println("</br>");
+                            out.println("</p>");
+                            out.println("<br/>");
                             out.println("<input  type =\"hidden\" name = \"nombrePelicula\" value =\"" + pelicula.nombre + "\">");
 
                             out.println("<input style='position:absolute;bottom:0; margin-bottom:22px;left: 69px;' class=\"bottomaligned button btn btn-link btn-xs\" type=\"submit\" value=\"+info\"/>");
@@ -136,3 +136,10 @@
         </div>             
     </body>
 </html>
+<style>
+    p {
+     white-space: nowrap;
+     overflow: hidden;
+     text-overflow: ellipsis;
+    }
+</style>

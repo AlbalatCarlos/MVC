@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -29,7 +30,12 @@ public class BorrarPelicula extends HttpServlet {
 
         String nombre = (String) req.getParameter("nombre");
         
-        bd.borrarPelicula(nombre);
+        HttpSession session = req.getSession();
+        String nombreSession = (String)session.getAttribute("nombre");
+        
+        String rol = bd.dameRolUsuario(nombreSession);
+        if(rol.equals("admin"))
+            bd.borrarPelicula(nombre);
         
         
         res.sendRedirect(res.encodeRedirectURL("/MVC/MenuGestionPeliculas"));

@@ -22,6 +22,27 @@
                 <h1>MENU GESTION ENTRADAS</h1>
             </div>
         </header>
+        <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8" >
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <a class="navbar-brand" >CINES CARJAY</a>
+                        </div>
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a>Entradas</a></li>
+                                
+
+                        </ul>
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href='/MVC/'><span class='glyphicon glyphicon-log-in'></span> Volver al inicio</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
         <br/>
         <br/>
         <br/>    

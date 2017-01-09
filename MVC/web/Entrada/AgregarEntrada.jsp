@@ -41,7 +41,7 @@
 
 
                 <form action="/MVC/ElegirButaca" method="POST">
-                    <select size="10" style="text-align: center" class="form-control"    name="idReproduccion">
+                    <select required size="10" style="text-align: center" class="form-control"    name="idReproduccion">
                         <%
                             try {
                                 ModeloDatos bd = new ModeloDatos();

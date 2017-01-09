@@ -41,7 +41,9 @@
             String idReproduccion = (String) session.getAttribute("idReproduccion");
             if(bd.IsNullOrWhiteSpace(idReproduccion) && (entradaSession != null))
             {
-                idReproduccion = ""+entradaSession.idReproduccion;
+                
+                idReproduccion = " " +entradaSession.idReproduccion + " ";
+                idReproduccion = idReproduccion.trim();
             }
             
             REPRODUCCION reproduccion =  bd.dameReproduccion(idReproduccion);

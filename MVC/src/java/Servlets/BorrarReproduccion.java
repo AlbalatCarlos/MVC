@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -28,9 +29,13 @@ public class BorrarReproduccion extends HttpServlet {
             HttpServletResponse res) throws ServletException, IOException {
 
         String idReproduccion = (String) req.getParameter("idReproduccion");
-        System.out.println("AQUI LLEGA LA REPRODUCCION A BORRAR" + idReproduccion);
         
-        bd.borrarReproduccion(idReproduccion);
+        HttpSession session = req.getSession();
+        String nombreSession = (String)session.getAttribute("nombre");
+        
+        String rol = bd.dameRolUsuario(nombreSession);
+        if(rol.equals("admin"))
+            bd.borrarReproduccion(idReproduccion);
         
         
         res.sendRedirect(res.encodeRedirectURL("/MVC/MenuGestionPeliculas"));

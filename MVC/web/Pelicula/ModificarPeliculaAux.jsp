@@ -39,117 +39,103 @@
 
         <form class="form-group col-xs-6 col-xs-offset-3" action="/MVC/AltaPelicula" method="POST">
 
-            <label for="nombrePelicula" class="control-label col-xs-3">Nombre Pelicula:</label>
-            <div class="col-xs-9">
-                <input required value="<%out.print(pelicula.nombre);%>" type="text" class="form-control" id="nombrePelicula" name="nombrePelicula" placeholder="Nombre Pelicula">
+            
+            
+            <div class="row form-group">
+                <label for="nombrePelicula" class="control-label col-xs-3">Nombre Pelicula:</label>
+                <div class="col-xs-9">
+                    <input required value="<%out.print(pelicula.nombre);%>" type="text" class="form-control" id="nombrePelicula" name="nombrePelicula" placeholder="Nombre Pelicula">
+                </div>
             </div>
-            <br>
-            <br>
-
-            <label class="control-label col-xs-3">Sinopsis:</label>
-            <div class="col-xs-9">
-                <input textarea rows="3" value="<%out.print(pelicula.sipnosis);%>" class="form-control" placeholder="Sinopsis" name="sinopsis">
+            
+            <div class="row form-group">
+                <label class="control-label col-xs-3">Sinopsis:</label>
+                <div class="col-xs-9">
+                    <input textarea rows="3" value="<%out.print(pelicula.sipnosis);%>" class="form-control" placeholder="Sinopsis" name="sinopsis">
+                </div>
             </div>
-            <br>
-            <br>
-
-
-
-            <label class="control-label col-xs-3">Página Oficial:</label>
-            <div class="col-xs-9">
-                <input type="text" value="<%out.print(pelicula.paginaOficial);%>" class="form-control" id="inputPaginaOficial" name="paginaOficial" placeholder="PaginaOficial">
+            
+            <div class="row form-group">
+                <label class="control-label col-xs-3">Página Oficial:</label>
+                <div class="col-xs-9">
+                    <input type="text" value="<%out.print(pelicula.paginaOficial);%>" class="form-control" id="inputPaginaOficial" name="paginaOficial" placeholder="PaginaOficial">
+                </div>
             </div>
-            <br>
-            <br>
-
-
-            <label class="control-label col-xs-3">Título Original:</label>
-            <div class="col-xs-9">
-                <input type="text" value="<%out.print(pelicula.tituloOriginal);%>" class="form-control" name="tituloOriginal" placeholder="TituloOriginal">
+            
+            <div class="row form-group">
+                <label class="control-label col-xs-3">Título Original:</label>
+                <div class="col-xs-9">
+                    <input type="text" value="<%out.print(pelicula.tituloOriginal);%>" class="form-control" name="tituloOriginal" placeholder="TituloOriginal">
+                </div>
             </div>
-            <br>
-            <br>
-
-
-            <label class="control-label col-xs-3">Género:</label>
-            <div class="col-xs-9">
-                <input type="text" value="<%out.print(pelicula.genero);%>" class="form-control" name="genero" placeholder="Genero">
+            
+            <div class="row form-group">
+                <label class="control-label col-xs-3">Género:</label>
+                <div class="col-xs-9">
+                    <input type="text" value="<%out.print(pelicula.genero);%>" class="form-control" name="genero" placeholder="Genero">
+                </div>
             </div>
-            <br>
-            <br>
-
-
-            <label class="control-label col-xs-3">Nacionalidad:</label>
-            <div class="col-xs-9">
-                <input type="text" value="<%out.print(pelicula.nacionalidad);%>" class="form-control" name="nacionalidad" placeholder="Nacionalidad">
+            
+            <div class="row form-group">
+                <label class="control-label col-xs-3">Nacionalidad:</label>
+                <div class="col-xs-9">
+                    <input type="text" value="<%out.print(pelicula.nacionalidad);%>" class="form-control" name="nacionalidad" placeholder="Nacionalidad">
+                </div>
             </div>
-            <br>
-            <br>
-
-
-            <label class="control-label col-xs-3">Duración:</label>
-            <div class="col-xs-9">
-                <input type="number" value="<%out.print(pelicula.duracion);%>" class="form-control" name="duracion" placeholder="Duracion">
+            
+            <div class="row form-group">
+                <label class="control-label col-xs-3">Duración:</label>
+                <div class="col-xs-9">
+                    <input type="number" value="<%out.print(pelicula.duracion);%>" class="form-control" name="duracion" placeholder="Duracion">
+                </div>
             </div>
-            <br>
-            <br>
-
-
-            <label class="control-label col-xs-3">Año:</label>
-            <div class="col-xs-9">
-                <input type="number" value="<%out.print(pelicula.anyo);%>" class="form-control" name="ano" placeholder="Año">
+            
+            <div class="row form-group">
+                <label class="control-label col-xs-3">Año:</label>
+                <div class="col-xs-9">
+                    <input type="number" value="<%out.print(pelicula.anyo);%>" class="form-control" name="ano" placeholder="Año">
+                </div>
             </div>
-            <br>
-            <br>
-
-
-            <label class="control-label col-xs-3">Distribuidora:</label>
-            <div class="col-xs-9">
-                <input type="text" value="<%out.print(pelicula.distribuidora);%>" class="form-control" name="distribuidora" placeholder="Distribuidora">
+            
+            <div class="row form-group">
+                <label class="control-label col-xs-3">Distribuidora:</label>
+                <div class="col-xs-9">
+                    <input type="text" value="<%out.print(pelicula.distribuidora);%>" class="form-control" name="distribuidora" placeholder="Distribuidora">
+                </div>
             </div>
-            <br>
-            <br>
-
-
-            <label class="control-label col-xs-3">Director:</label>
-            <div class="col-xs-9">
-                <input type="text" value="<%out.print(pelicula.director);%>" class="form-control" name="director" placeholder="Director">
+            
+            <div class="row form-group">
+                <label class="control-label col-xs-3">Director:</label>
+                <div class="col-xs-9">
+                    <input type="text" value="<%out.print(pelicula.director);%>" class="form-control" name="director" placeholder="Director">
+                </div>
             </div>
-            <br>
-            <br>
-
-
-            <label class="control-label col-xs-3">Actores:</label>
-            <div class="col-xs-9">
-                <input type="text" value="<%out.print(pelicula.actores);%>" class="form-control" name="actores" placeholder="Actores">
+            
+            <div class="row form-group">
+                <label class="control-label col-xs-3">Actores:</label>
+                <div class="col-xs-9">
+                    <input type="text" value="<%out.print(pelicula.actores);%>" class="form-control" name="actores" placeholder="Actores">
+                </div>
             </div>
-            <br>
-            <br>
-
-            <label class="control-label col-xs-3">Edad minima recomendada:</label>
-            <div class="col-xs-9">
-                <input type="text" value="<%out.print(pelicula.edad);%>" class="form-control" name="edad" placeholder="Edad minima recomendada">
+            
+            <div class="row form-group">
+                <label class="control-label col-xs-3">Edad minima recomendada:</label>
+                <div class="col-xs-9">
+                    <input type="text" value="<%out.print(pelicula.edad);%>" class="form-control" name="edad" placeholder="Edad minima recomendada">
+                </div>
             </div>
-            <br>
-            <br>
-
-            <label class="control-label col-xs-3">Otros datos de interés:</label>
-            <div class="col-xs-9">
-                <input type="text" value="<%out.print(pelicula.otrosDatos);%>" class="form-control" name="datos" placeholder="Otros datos">
+            
+            <div class="row form-group">
+                <label class="control-label col-xs-3">Otros datos de interés:</label>
+                <div class="col-xs-9">
+                    <input type="text" value="<%out.print(pelicula.otrosDatos);%>" class="form-control" name="datos" placeholder="Otros datos">
+                </div>
             </div>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-
+            
             <div class="row">
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2"><a href="/MVC/MenuGestionPeliculas" class="button btn btn-primary btn-md">Volver a menú </a></div>
-                <div class="col-sm-4"><input class="button btn btn-success btn-block" type="submit" value="Modificar Película"/></div>
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2"></div>
+                <div class="col-xs-4"><a href="/MVC/MenuGestionPeliculas" class="button btn btn-primary btn-md">Volver a menú </a></div>
+                <div class="col-xs-4 col-xs-offset-2"><input class="button btn btn-success btn-block" type="submit" value="Modificar Película"/></div>
+                
             </div>
 
 

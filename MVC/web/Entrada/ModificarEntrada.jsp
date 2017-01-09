@@ -28,7 +28,7 @@
         
         <header>
             <div class="container" style="text-align: center" >
-                <h1>MODIFICAR REPRODUCCION</h1>
+                <h1>MODIFICAR ENTRADA</h1>
             </div>
         </header>
         <br>
@@ -37,12 +37,12 @@
             </div>
             <div class="col-sm-4">
                 <div class="panel-group">
-                    <div class="panel panel-body panel-primary" style="text-align: center">Elige una reproduccion a modificar</div>
+                    <div class="panel panel-body panel-primary" style="text-align: center">Elige una entrada a modificar</div>
                 </div>
 
 
                  <form action="/MVC/ElegirButaca" method="POST">
-                    <select size="10" style="text-align: center" class="form-control"    name="referencia">
+                    <select required size="10" style="text-align: center" class="form-control"    name="referencia">
                         <%
                             try {
                                 String nombre = (String) session.getAttribute("nombre");
@@ -64,7 +64,7 @@
                                 bd.cerrarConexion();
 
                             } catch (Exception e) {
-                                out.println("<option class=\"btn btn-block\" value='' > No hay Reproducciones</option>");
+                                out.println("<option class=\"btn btn-block\" value='' > No hay Entradas</option>");
                             }
 
 
