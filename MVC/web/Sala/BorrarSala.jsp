@@ -44,7 +44,7 @@
 
 
                 <form class="form-group" action="/MVC/BorrarSala" method="POST">
-                    <select  size="10" style="text-align: center" class="form-control "    name="nombre">
+                    <select required size="10" style="text-align: center" class="form-control " name="nombre">
                         <%
                             ModeloDatos bd = new ModeloDatos();
                             bd.abrirConexion();
@@ -68,7 +68,7 @@
                     </select>
                     <br>
                     <br>
-                    <input class="button btn btn-danger btn-block" onclick="pulsar()"  type="submit" value="Borrar Sala"/>
+                    <input class="button btn btn-danger btn-block" type="submit" value="Borrar Sala"/>
                     
                     <br>
                     <br>

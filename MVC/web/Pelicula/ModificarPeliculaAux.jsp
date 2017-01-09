@@ -37,7 +37,7 @@
 
 
 
-        <form class="form-group" action="/MVC/AltaPelicula" method="POST">
+        <form class="form-group col-xs-6 col-xs-offset-3" action="/MVC/AltaPelicula" method="POST">
 
             <label for="nombrePelicula" class="control-label col-xs-3">Nombre Pelicula:</label>
             <div class="col-xs-9">
@@ -89,7 +89,7 @@
 
             <label class="control-label col-xs-3">Duración:</label>
             <div class="col-xs-9">
-                <input type="text" value="<%out.print(pelicula.duracion);%>" class="form-control" name="duracion" placeholder="Duracion">
+                <input type="number" value="<%out.print(pelicula.duracion);%>" class="form-control" name="duracion" placeholder="Duracion">
             </div>
             <br>
             <br>
@@ -97,7 +97,7 @@
 
             <label class="control-label col-xs-3">Año:</label>
             <div class="col-xs-9">
-                <input type="text" value="<%out.print(pelicula.anyo);%>" class="form-control" name="ano" placeholder="Año">
+                <input type="number" value="<%out.print(pelicula.anyo);%>" class="form-control" name="ano" placeholder="Año">
             </div>
             <br>
             <br>
@@ -135,7 +135,7 @@
 
             <label class="control-label col-xs-3">Otros datos de interés:</label>
             <div class="col-xs-9">
-                <input type="text" value="<%out.print(pelicula.otrosDatos);%>" class="form-control" name="datos" placeholder="Actores">
+                <input type="text" value="<%out.print(pelicula.otrosDatos);%>" class="form-control" name="datos" placeholder="Otros datos">
             </div>
             <br>
             <br>

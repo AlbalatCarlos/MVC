@@ -118,7 +118,7 @@
             
             <label class="control-label col-xs-3">Id Reproducción</label>
             <div class="col-xs-9">
-                <input required type="number" value="<%out.print(reproduccion.idReproduccion);%>" class="form-control" name="idReproduccion" placeholder="Id Reproducción">
+                <input readonly required type="number" value="<%out.print(reproduccion.idReproduccion);%>" class="form-control" name="idReproduccion" placeholder="Id Reproducción">
             </div>
             <br>
             <br>

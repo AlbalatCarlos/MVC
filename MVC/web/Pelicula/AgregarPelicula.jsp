@@ -76,7 +76,7 @@
 
             <label class="control-label col-xs-3">Duración:</label>
             <div class="col-xs-9">
-                <input type="text" class="form-control" name="duracion" placeholder="Duracion">
+                <input type="number" class="form-control" name="duracion" placeholder="Duracion">
             </div>
             <br>
             <br>
@@ -84,7 +84,7 @@
 
             <label class="control-label col-xs-3">Año:</label>
             <div class="col-xs-9">
-                <input type="text" class="form-control" name="ano" placeholder="Año">
+                <input type="number" class="form-control" name="ano" placeholder="Año">
             </div>
             <br>
             <br>
@@ -122,7 +122,7 @@
 
             <label class="control-label col-xs-3">Otros datos de interés:</label>
             <div class="col-xs-9">
-                <input type="text" class="form-control" name="datos" placeholder="Actores">
+                <input type="text" class="form-control" name="datos" placeholder="Otros datos">
             </div>
             <br>
             <br>

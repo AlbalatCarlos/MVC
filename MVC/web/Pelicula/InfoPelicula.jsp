@@ -4,6 +4,7 @@
     Author     : Jayro
 --%>
 
+<%@page import="java.util.ArrayList"%>
 <%@page import="Servlets.ModeloDatos"%>
 <%@page import="Servlets.ModeloDatos.*"%>
 <html>
@@ -26,6 +27,7 @@
             bd.abrirConexion();
             PELICULA pelicula = bd.damePelicula(nombrePelicula);
             String nombre = (String) session.getAttribute("nombre");
+            ArrayList<COMENTARIO> comentarios = bd.dameListaComentarios(nombrePelicula);
             bd.cerrarConexion();
 
         %>
@@ -99,6 +101,41 @@
             <div class="col-sm-2"></div>
             <div class="col-sm-2"></div>
         </div>
+        <div class="row">
+            <form class="form-group col-xs-offset-3 col-xs-6">
+                <div class="form-group row">
+                    <label class="control-label col-xs-3">Comentario</label>
+                    <div class="col-xs-9">
+                        <input required type="text"  class="form-control" id="comentario" name="comentario" value="" placeholder="Comentario">
+                    </div>
+                </div>
+                <br/>
+                <div class="form-group row">
+                    <div class="col-xs-3">
+                        <a onclick="AltaComentario()" class="button btn btn-primary btn-md">Comentar Pelicula</a>
+                    </div>
+                    
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            <div id="listaComentarios" class="col-xs-offset-3 col-xs-6">
+                <table class="table table-condensed">
+                <%
+                    
+                    try{
+                        for(COMENTARIO comentario : comentarios)
+                        {
+                            out.println("<tr><td>"+comentario.nombreUsuario+"</td><td>"+comentario.comentario+"</td></tr>");
+                        }
+                    }
+                    catch(Exception e)
+                    {}
+                
+                %>
+                </table>
+            </div>
+        </div>
         <br/>
         <br/>
         
@@ -109,3 +146,26 @@
 
     </body>
 </html>
+<script>
+    function AltaComentario(){
+        var data = {
+            comentario: $('#comentario').val(),
+            nombrePelicula: "<%out.print(nombrePelicula);%>",
+            nombreUsuario: "<%out.print(nombre);%>"
+
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "/MVC/AltaComentario",
+            //data: JSON.stringify(data),
+            data: data,
+            success: function () {
+                window.location.href='../InfoPelicula';
+            }
+            //success: function(response) {
+            //    alert('vuelvo!!!');
+            //}
+        });
+    }
+</script>

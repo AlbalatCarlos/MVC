@@ -48,16 +48,6 @@
             <br>
             <br>
 
-
-            <label class="control-label col-xs-3">Fecha Prueba</label>
-            <div class="col-xs-9">
-                <input type="date" class="form-control" name="fecha" placeholder="Fecha">
-            </div>
-            <br>
-            <br>
-
-
-            
             <br>
             <br>
             <br>

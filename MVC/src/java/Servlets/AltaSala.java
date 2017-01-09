@@ -43,9 +43,7 @@ public class AltaSala extends HttpServlet {
         String nombre = (String) req.getParameter("nombre");
         String filasAux = (String) req.getParameter("filas");
         String columnasAux = (String) req.getParameter("columnas");
-        String prueba = (String) req.getParameter("fecha");
         
-        System.out.println(" ************* Prueba   "+ prueba);
         int filas=0,columnas=0;
         
         if(filasAux.length()>0){

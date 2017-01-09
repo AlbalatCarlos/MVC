@@ -29,8 +29,11 @@ public class InfoPelicula extends HttpServlet {
         
         
         String nombre = (String) req.getParameter("nombrePelicula");
-        
-        session.setAttribute("nombrePelicula", nombre);
+        ModeloDatos bd = new ModeloDatos();
+        if(bd.IsNullOrWhiteSpace(nombre) == false)
+        {
+            session.setAttribute("nombrePelicula", nombre);
+        }
         
         res.sendRedirect(res.encodeRedirectURL("/MVC/Pelicula/InfoPelicula.jsp"));
     }

@@ -47,7 +47,6 @@ public class BorrarSala extends HttpServlet {
                 if (bd.existeRegistroEnTabla("SALA", "nombre", nombre)) 
                 {
                     bd.borrarSala(nombre);
-                    pagina = "/MVC/Sala/ModificarSala.jsp";
                 } 
                   
             }

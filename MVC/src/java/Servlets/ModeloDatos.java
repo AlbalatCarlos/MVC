@@ -117,7 +117,7 @@ public class ModeloDatos {
         return (existe);
     }
     
-    
+     
     public boolean IsNullOrWhiteSpace(String value) {
         if (value == null) {
             return true;
@@ -130,6 +130,65 @@ public class ModeloDatos {
         }
         return true;
     }
+    
+    
+    public String dameSiguienteIdReproduccionLibre(){
+        String id = "";
+        try {
+                set = con.createStatement();
+                rs = set.executeQuery("SELECT MAX(idReproduccion) as maximo FROM REPRODUCCION");
+                
+                while (rs.next()) {
+                    int maximoMas1=0;
+                    maximoMas1 = rs.getInt("maximo")+1;
+                    id = "" + maximoMas1;
+                }
+                
+                return id;
+        } 
+        catch (Exception e) {
+            System.out.println("Excepcion al busca siguiente idReproduccion "+e);
+        }
+        return id;
+    }
+    
+    
+    public void insertarComentario(String comentario, String nombreUsuario, String nombrePelicula) {
+        try {
+            set = con.createStatement();
+            set.executeUpdate("INSERT INTO COMENTARIO "
+                    + " (comentario,nombreUsuario,nombrePelicula) VALUES ('" + comentario 
+                    + "','" + nombreUsuario + "','" + nombrePelicula + "')");
+            rs.close();
+            set.close();
+        } catch (Exception e) {
+            System.out.println("Fallo al insertar el comentario: "+e);
+            
+        }
+    }
+    
+    
+     public ArrayList<COMENTARIO> dameListaComentarios(String nombrePelicula) {
+        try {
+            ArrayList<COMENTARIO> comentarios = new ArrayList<COMENTARIO>();
+            set = con.createStatement();
+            rs = set.executeQuery("SELECT * FROM COMENTARIO WHERE nombrePelicula='" + nombrePelicula + "'");
+            while (rs.next()) {
+                COMENTARIO comentario = new COMENTARIO();
+                comentario.comentario = rs.getString("comentario");
+                comentario.nombrePelicula = rs.getString("nombrePelicula");
+                comentario.nombreUsuario = rs.getString("nombreUsuario");
+                comentarios.add(comentario);
+            }
+            rs.close();
+            set.close();
+            return comentarios;
+        } catch (Exception e) {
+            System.out.println("Fallo al listar los comentarios "+ e);
+            return new ArrayList<COMENTARIO>();
+        }
+    }
+    
 
     public void actualizarUsuario(String nombre, String apellidos, String pass, String rol) {
         try {

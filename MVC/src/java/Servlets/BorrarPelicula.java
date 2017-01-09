@@ -27,8 +27,7 @@ public class BorrarPelicula extends HttpServlet {
     public void service(HttpServletRequest req,
             HttpServletResponse res) throws ServletException, IOException {
 
-        String nombre = (String) req.getParameter("nombrePelicula");
-        System.out.println("AQUI LLEGA LA PELICULA A BORRAR" + nombre);
+        String nombre = (String) req.getParameter("nombre");
         
         bd.borrarPelicula(nombre);
         

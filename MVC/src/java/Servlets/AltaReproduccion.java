@@ -50,8 +50,11 @@ public class AltaReproduccion extends HttpServlet {
         
          String idReproduccion= "";
         
-        if(((String)req.getParameter("idReproduccion")).length()>0){
+        if(((String)req.getParameter("idReproduccion"))!=null){
         idReproduccion= req.getParameter("idReproduccion");
+        }else
+        {
+            idReproduccion = bd.dameSiguienteIdReproduccionLibre();
         }
         
 
