@@ -44,7 +44,7 @@
 
 
                 <form class="form-group" action="/MVC/BorrarReproduccion" method="POST">
-                    <select required size="10" style="text-align: center" class="form-control"    name="nombre">
+                    <select required size="10" style="text-align: center" class="form-control"    name="idReproduccion">
                         <%
                             ModeloDatos bd = new ModeloDatos();
                             bd.abrirConexion();

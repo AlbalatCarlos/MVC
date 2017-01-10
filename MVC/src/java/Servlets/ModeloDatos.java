@@ -152,6 +152,26 @@ public class ModeloDatos {
         return id;
     }
     
+    public String dameSiguienteReferenciaLibre(){
+        String id = "";
+        try {
+                set = con.createStatement();
+                rs = set.executeQuery("SELECT MAX(referencia) as maximo FROM ENTRADA");
+                
+                while (rs.next()) {
+                    int maximoMas1=0;
+                    maximoMas1 = rs.getInt("maximo")+1;
+                    id = "" + maximoMas1;
+                }
+                
+                return id;
+        } 
+        catch (Exception e) {
+            System.out.println("Excepcion al buscar la siguiente referencia "+e);
+        }
+        return id;
+    }
+    
     
     public void insertarComentario(String comentario, String nombreUsuario, String nombrePelicula) {
         try {
@@ -820,34 +840,7 @@ public class ModeloDatos {
         }
     }
 
-    double calcularGananciaPorCocheYCircuito(String coche, String circuito) {
-        try {
-            double vueltas;
-            double curvasPorVuelta;
-            double gananciaFinal = 0.0;
-            set = con.createStatement();
-            rs = set.executeQuery("SELECT vueltas,curvasPorVuelta FROM CIRCUITO WHERE nombre='"
-                    + circuito +"'");
-            while (rs.next()) {
-                
-                vueltas = rs.getDouble("vueltas");
-                curvasPorVuelta = rs.getDouble("curvasPorVuelta");
-                rs = set.executeQuery("SELECT ganaciaKW FROM COCHE WHERE nombre='"
-                    + coche +"'");
-                while(rs.next()){
-                    
-                    gananciaFinal = vueltas * curvasPorVuelta * rs.getDouble("ganaciaKW");
-                }
-            }
-            rs.close();
-            set.close();
-            
-            return gananciaFinal;
-        } catch (Exception e) {
-            System.out.println("No se ha podido calcular la ganancia");
-            return 0.0;
-        }
-    }
+    
     
     
 }

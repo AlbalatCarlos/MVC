@@ -39,12 +39,19 @@ public class AltaEntrada extends HttpServlet {
 
         String fila = (String) req.getParameter("fila");
         String columna = (String) req.getParameter("columna");
-        String referencia = (String) req.getParameter("referencia");
+        String referencia = "";
         
         String idReproduccion= "";
         
         if(((String)req.getParameter("idReproduccion")).length()>0){
             idReproduccion= req.getParameter("idReproduccion");
+        }
+        
+        if(((String)req.getParameter("referencia"))!=null){
+        referencia= req.getParameter("referencia");
+        }else
+        {
+            referencia = bd.dameSiguienteReferenciaLibre();
         }
         
 

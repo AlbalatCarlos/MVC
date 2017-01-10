@@ -104,9 +104,15 @@
             </div>
             
             <div class="form-group row">
-                <label class="control-label col-xs-3">Referencia</label>
-                <div class="col-xs-9">
-                    <input required type="number"  class="form-control" id="referencia" name="referencia" value="" placeholder="Referencia">
+                <label class="control-label col-xs-3">Introduzca su número de tarjeta</label>
+                <div class="col-xs-3">
+                    <input required type="number" min="0" max="9999"  class="form-control" id="tarjeta1" name="tarjeta1" value="" placeholder="">
+                </div>
+                <div class="col-xs-3">
+                    <input required type="number" min="0" max="9999" class="form-control" id="tarjeta2" name="tarjeta2" value="" placeholder="">
+                </div>
+                <div class="col-xs-3">
+                    <input required type="number" min="0" max="9999"  class="form-control" id="tarjeta3" name="tarjeta3" value="" placeholder="">
                 </div>
             </div>
             
