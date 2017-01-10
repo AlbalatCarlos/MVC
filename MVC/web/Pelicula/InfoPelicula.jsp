@@ -42,7 +42,7 @@
             <div class="col-sm-8">
                 <div class="row">
                     <div class="col-sm-6">
-                        <div><img src="../Imagenes/cartelera/drive.jpg" align="center" class="img-rounded" alt="Drive" width="304" height="320"></div>
+                        <div><img src=".<%if(bd.IsNullOrWhiteSpace(pelicula.paginaOficial)==false){out.print(pelicula.paginaOficial);}%>" style="max-width:304px; max-height:320px;" align="center" class="img-rounded" alt="Drive" ></div>
                     </div>
                     <div class="col-sm-6">
                         <span class="label label-primary btn-block" style="text-align: center">Sinopsis</span>

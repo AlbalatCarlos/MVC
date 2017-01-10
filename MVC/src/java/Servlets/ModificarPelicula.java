@@ -30,8 +30,11 @@ public class ModificarPelicula extends HttpServlet {
         
         String nombre = (String) req.getParameter("nombrePelicula");
         
+        if(nombre.contains("Ã±"))
+        {
+            nombre = nombre.replace("Ã±", "ñ");
+        }
         session.setAttribute("nombrePelicula", nombre);
-        
         res.sendRedirect(res.encodeRedirectURL("/MVC/Pelicula/ModificarPeliculaAux.jsp"));
     }
 

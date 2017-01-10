@@ -100,9 +100,14 @@
 
                         for (PELICULA pelicula : peliculas) {
 
-                            out.print("<form  class='col-sm-3 form-group' style='height:200px;'  action=\"/MVC/InfoPelicula\" Method=\"POST\">");
+                            out.print("<form  class='col-sm-3 form-group' style='height:250px;'  action=\"/MVC/InfoPelicula\" Method=\"POST\">");
                             out.print("<div class='contenedorPelicula'>");
                             out.println("<br/>");
+                            if(bd.IsNullOrWhiteSpace(pelicula.paginaOficial)==false)
+                            {
+                                out.println("<img style='max-width:80px;max-height:80px;' src='"+pelicula.paginaOficial+"'/>");
+                            }
+                            
                             out.println("<br/>");
                             out.println("<p>" + "" + pelicula.nombre +"</p>");
                             out.println("<p>");
@@ -113,7 +118,7 @@
                             out.println("<br/>");
                             out.println("<input  type =\"hidden\" name = \"nombrePelicula\" value =\"" + pelicula.nombre + "\">");
 
-                            out.println("<input style='position:absolute;bottom:0; margin-bottom:22px;left: 69px;' class=\"bottomaligned button btn btn-link btn-xs\" type=\"submit\" value=\"+info\"/>");
+                            out.println("<input style='position:absolute;bottom:0; margin-bottom:32px;left: 83px;' class=\"bottomaligned button btn btn-link btn-xs\" type=\"submit\" value=\"+info\"/>");
                             out.println("<input onclick=\"location.href='/MVC/MenuEntradas'\" class=\"bottomaligned button btn btn-success btn-xs\" value=\"COMPRAR ENTRADAS\"/>");
                             out.println("<br/><br/>");
 

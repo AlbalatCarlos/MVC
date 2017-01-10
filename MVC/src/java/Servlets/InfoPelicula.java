@@ -29,6 +29,11 @@ public class InfoPelicula extends HttpServlet {
         
         
         String nombre = (String) req.getParameter("nombrePelicula");
+        if(nombre.contains("Ã±"))
+        {
+            nombre = nombre.replace("Ã±", "ñ");
+        }
+        
         ModeloDatos bd = new ModeloDatos();
         if(bd.IsNullOrWhiteSpace(nombre) == false)
         {
